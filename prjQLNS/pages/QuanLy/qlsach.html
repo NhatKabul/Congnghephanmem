@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Bán hàng</title>
+  <title>Quản lý sách</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
@@ -149,22 +149,20 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              <li class="active"><a href="#"><i class="fa fa-circle-o"></i> Bán lẻ</a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> Bán sỉ</a></li>
+              <li class="active"><a href="../../index.html"><i class="fa fa-circle-o"></i> Bán lẻ</a></li>
+              <li><a href="../../index.html"><i class="fa fa-circle-o"></i> Bán sỉ</a></li>
             </ul>
           </li>
           <li class="treeview">
-            <a href="#">
+            <a href="../../pages/NhapSach/nhapsach.html">
               <i class="fa fa-files-o"></i>
-              <span>Nhập hàng</span>
+              <span>Nhập sách</span>
               <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
+
 
               </span>
             </a>
-            <ul class="treeview-menu">
-              <li><a href="#"><i class="fa fa-circle-o"></i> Lập phiếu nhập</a></li>
-            </ul>
+
           </li>
           <li>
             <a href="#">
@@ -175,7 +173,7 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="#"><i class="fa fa-circle-o"></i> Quản lý sách</a></li>
+              <li><a href="qlsach.html"><i class="fa fa-circle-o"></i> Quản lý sách</a></li>
               <li><a href="#"><i class="fa fa-circle-o"></i> Quản lý Thể loại</a></li>
               <li><a href="#"><i class="fa fa-circle-o"></i> Quản lý NXB</a></li>
               <li><a href="#"><i class="fa fa-circle-o"></i> Quản lý NCC</a></li>
@@ -264,180 +262,297 @@
 
       <div class="panel panel-default">
         <!-- Default panel contents -->
-        <div class="panel-heading"><label>BÁN HÀNG</label></div>
-        <div class="panel-body">
-          <!-- form-inline-->
-          <!-- .................................FORM THÔNG TIN HÀNG HÓA - START ...............................................-->
+        <div class="panel-heading"><label>QUẢN LÝ SÁCH</label>
+          
+          <!-- ............FORM SEARCH SÁCH - START................-->
+          <!--<div class="col-md-3"> 
+          <form action="#" method="get" class="sidebar-form">
+            <div class="input-group">
+              <input type="text" name="q" class="form-control" placeholder="Search...">
+              <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                </button>
+              </span>
+            </div>
+          </form>
+        </div>-->
+        <!-- ............FORM SEARCH SÁCH - END................-->
+      </div>
+      <div class="panel-body">
+        <!-- form-inline-->
+        <!-- .................................TABLE LIST THÔNG TIN SÁCH - START ...............................................-->
 
 
-          <div class=""> 
-            <div class="row"> 
-              <div class="col-md-offset-1 col-md-12"> 
-                <form action="#" method="post" class="form-horizontal" id="frm-hang-hoa"> 
-                  <div class="header"><label>Thông tin đơn hàng:</label></div> 
-                  <div class="form-content"> 
+        <div class=""> 
+          <div class="row"> 
+            <div class="col-md-12"> 
+              <div style="min-height: 500px;overflow:auto;">
+                <table class="table table-bordered table-hover">
+                  <thead>
+                    <tr>
+                      <th>
+                        <div class="text-center">
+                          <input id="chkCheckAll" type="checkbox" value="">
+                        </div>
+                      </th>
+                      <th>STT</th>
+                      <th>Mã Sách</th>
+                      <th>Tên Sách</th>
+                      <th>Chi tiết</th>
+                      <th>Sửa</th>
+                      <th>Xóa</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="text-center">
+                          <input id="chkCheckAll" type="checkbox" value="">
+                        </div>
+                      </td>
+                      <td>1</td>
+                      <td>01</td>
+                      <td>You are the aple of my eye</td>
+                      <td><a href="#" data-toggle="modal" data-target="#myModal">Chi tiết</a></td>
+                      <td><a href="#">Sửa</a></td>
+                      <td>Xóa</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="text-center">
+                          <input id="chkCheckAll" type="checkbox" value="">
+                        </div>
+                      </td>
+                      <td>2</td>
+                      <td>02</td>
+                      <td>How i met your mother</td>
+                      <td><a href="#" data-toggle="modal" data-target="#myModal">Chi tiết</a></td>
+                      <td><a href="#">Sửa</a></td>
+                      <td>Xóa</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="text-center">
+                          <input id="chkCheckAll" type="checkbox" value="">
+                        </div>
+                      </td>
+                      <td>3</td>
+                      <td>03</td>
+                      <td>Doreamon</td>
+                      <td><a href="#" data-toggle="modal" data-target="#myModal">Chi tiết</a></td>
+                      <td><a href="#">Sửa</a></td>
+                      <td>Xóa</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="text-center">
+                          <input id="chkCheckAll" type="checkbox" value="">
+                        </div>
+                      </td>
+                      <td>4</td>
+                      <td>04</td>
+                      <td>Sói già phố wall</td>
+                      <td><a href="#" data-toggle="modal" data-target="#myModal">Chi tiết</a></td>
+                      <td><a href="#">Sửa</a></td>
+                      <td>Xóa</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="text-center">
+                          <input id="chkCheckAll" type="checkbox" value="">
+                        </div>
+                      </td>
+                      <td>5</td>
+                      <td>05</td>
+                      <td>Tôi thấy hoa vàng trên cỏ xanh</td>
+                      <td><a href="#" data-toggle="modal" data-target="#myModal">Chi tiết</a></td>
+                      <td><a href="#">Sửa</a></td>
+                      <td>Xóa</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="text-center">
+                          <input id="chkCheckAll" type="checkbox" value="">
+                        </div>
+                      </td>
+                      <td>1</td>
+                      <td>01</td>
+                      <td>You are the aple of my eye</td>
+                      <td><a href="#" data-toggle="modal" data-target="#myModal">Chi tiết</a></td>
+                      <td><a href="#">Sửa</a></td>
+                      <td>Xóa</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="text-center">
+                          <input id="chkCheckAll" type="checkbox" value="">
+                        </div>
+                      </td>
+                      <td>1</td>
+                      <td>01</td>
+                      <td>You are the aple of my eye</td>
+                      <td><a href="#" data-toggle="modal" data-target="#myModal">Chi tiết</a></td>
+                      <td><a href="#">Sửa</a></td>
+                      <td>Xóa</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="text-center">
+                          <input id="chkCheckAll" type="checkbox" value="">
+                        </div>
+                      </td>
+                      <td>1</td>
+                      <td>01</td>
+                      <td>You are the aple of my eye</td>
+                      <td><a href="#" data-toggle="modal" data-target="#myModal">Chi tiết</a></td>
+                      <td><a href="#">Sửa</a></td>
+                      <td>Xóa</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="text-center">
+                          <input id="chkCheckAll" type="checkbox" value="">
+                        </div>
+                      </td>
+                      <td>1</td>
+                      <td>01</td>
+                      <td>You are the aple of my eye</td>
+                      <td><a href="#" data-toggle="modal" data-target="#myModal">Chi tiết</a></td>
+                      <td><a href="#">Sửa</a></td>
+                      <td>Xóa</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="text-center">
+                          <input id="chkCheckAll" type="checkbox" value="">
+                        </div>
+                      </td>
+                      <td>1</td>
+                      <td>01</td>
+                      <td>You are the aple of my eye</td>
+                      <td><a href="#" data-toggle="modal" data-target="#myModal">Chi tiết</a></td>
+                      <td><a href="#">Sửa</a></td>
+                      <td>Xóa</td>
+                    </tr>
 
-                    <div class="form-group"> 
-                      <div class="col-sm-5"> <input class="form-control" id="txtMaKhachHang" placeholder="Mã khách hàng" type="text"> <label class="control-label" for="exampleInputName2"></label> 
-                      </div> 
-                      <div class="col-sm-5"> <input class="form-control" id="txtTenKhachHang" placeholder="Tên khách hàng" type="text"> <label class="control-label" for="exampleInputName2"></label> 
-                      </div> 
-                    </div> 
-                    <div class="form-group"> 
-                      <div class="col-sm-3"> <input class="form-control" id="txtMaHangHoa" placeholder="Mã hàng hóa" type="text"> <label class="control-label" for="exampleInputName2"></label> 
-                      </div> 
-                      <div class="col-sm-4"> <input class="form-control" id="txtTenHangHoa" placeholder="Tên hàng hóa" type="text"> <label class="control-label" for="exampleInputName2"></label> 
-                      </div> 
-                      <div class="col-sm-3"> <input class="form-control" id="txtSoLuong" placeholder="Số lượng" type="text"> <label class="control-label" for="exampleInputName2"></label> 
-                      </div> 
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+          </div> 
+        </div>
+
+        <!-- .................................  TABLE LIST THÔNG TIN SÁCH -END ............................................-->
+
+        <!-- .................................  MODAL THÔNG TIN SÁCH -START ............................................-->
+        <!-- Modal -->
+        <div class="modal fade col-md-12" id="myModal" role="dialog">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">THÔNG TIN SÁCH</h4>
+              </div>
+              <div class="modal-body">
 
 
-                    </div> 
 
-                    <div class="form-group"> 
-                     <!-- <div class="col-sm-10"> 
-                        <select class="form-control"> 
-                          <option value="none" selected="">Chọn giới tính...</option> 
-                          <option value="male">Nam</option> 
-                          <option value="female">Nữ</option>
-                          <option value="other">Khác</option> 
-                        </select> 
-                      </div> -->
-                      <div class="col-sm-5 text-right">
-                        <div class="checkbox">
-                          <label><input id="chkMaGiamGia" type="checkbox" value="">Áp mã giảm giá</label>
+                <div class="row"> 
+                  <div class="col-md-offset-1 col-md-12"> 
+                    <form action="#" method="post" class="form-horizontal" id="frm-hang-hoa"> 
+                     <!-- <div class="header"><label>Thông tin sách:</label></div> -->
+                     <div class="form-content"> 
+
+                      <div class="form-group">
+                        <div class="col-sm-6">
+                          <div class="col-sm-12"><label>Tên sách:</label> <input class="form-control" id="txtTenSach" placeholder="Mã Sách" type="text" value="You are the aple of my eye" readonly>  
+                          </div>
+                          <div class="col-sm-6"><label>Mã sách:</label> <input class="form-control" id="txtMaSach" placeholder="Mã Sách" type="text" value="01" readonly>  
+                          </div> 
+
+                          <div class="col-sm-6"> <label>Ngày nhập:</label><input class="form-control" id="txtNgayNhap" placeholder="Tên sách" type="text" value="1/1/2017" readonly>
+                          </div> 
+                          <div class="col-sm-6"><label>Số lượng:</label> <input class="form-control" id="txtMaSach" placeholder="Số lượng" type="text" value="100" readonly>  
+                          </div> 
+
+                          <div class="col-sm-6"> <label>Giá bán:</label> <input class="form-control" id="txtSoLuong" placeholder="Giá bán" type="text" value="100000" readonly>
+                          </div> 
+                        </div>
+                        <div class="col-sm-3" style="min-height: 180px;">
+                          <br>
+                          <img class="img-thumbnail" src="../../dist/img/you-are-the-aple-of-my-eye.jpg" alt="Chania">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="col-sm-12">
+                          <div class="col-sm-5"> <label>Thể loại:</label><input class="form-control" id="txtTheLoai" placeholder="Thể loại" type="text" value="Truyện tình" readonly> 
+                          </div> 
+                          <div class="col-sm-5"> <label>Tác giả:</label><input class="form-control" id="txtTacGia" placeholder="Tác giả" type="text" value="Cửu Bả Đao" readonly> 
+                          </div> 
+                        </div> 
+                      </div>
+                      <div class="form-group">
+                        <div class="col-sm-12">
+                          <div class="col-sm-5"> <label>Nhà xuất bản:</label><input class="form-control" id="txtNXB" placeholder="Nhà xuất bản" type="text" value="Tuổi trẻ" readonly> 
+                          </div> 
+                          <div class="col-sm-5"> <label>Nhà cung cấp:</label><input class="form-control" id="txtNCC" placeholder="Nhà cung cấp" type="text" value="ATM Education" readonly> 
+                          </div> 
                         </div> 
                       </div>
 
-                      <div class="col-sm-3">
-                        <input class="form-control" id="txtMaGiamGia" type="text" disabled>
-                      </div>
-                    </div>
-                  </div> 
 
-                  <div class="footer clearfix"> 
+
+                    </div> 
+
+                 <!-- <div class="footer clearfix"> 
                     <button type="button" class="btn btn-default">Xác nhận</button> 
-                  </div> 
+                  </div> -->
                 </form> 
               </div> 
             </div> 
+
+
+
           </div>
-
-          <!-- .................................  FORM THÔNG TIN HÀNG HÓA -END ............................................-->
-
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
         </div>
-
       </div>
-
-      <!--....................   PANEL - END ..................................... -->
-      <!-- ...................... TABLE DANH SÁCH HÀNG HÓA - START ................................-->
-      <form id="frm-danh-sach-hang-hoa" action="#" method="post">
-        <div class="row"> 
-          <div class="col-md-12"> 
-            <div style="height:150px;overflow:auto;">
-              <table class="table table-bordered table-hover">
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Tên hàng hóa</th>
-                    <th>Số lượng</th>
-                    <th>Đươn giá</th>
-                    <th>%Giảm giá</th>
-                    <th>Thành tiền</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Ba con sâu</td>
-                    <td>1</td>
-                    <td>100</td>
-                    <td>5</td>
-                    <td>95000</td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>Bốn con sói</td>
-                    <td>1</td>
-                    <td>100</td>
-                    <td>5</td>
-                    <td>95000</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>Bảy con sóc</td>
-                    <td>1</td>
-                    <td>100</td>
-                    <td>5</td>
-                    <td>95000</td>
-                  </tr>
-                  <tr>
-                    <td>1</td>
-                    <td>Ba cá sấu</td>
-                    <td>1</td>
-                    <td>100</td>
-                    <td>5</td>
-                    <td>95000</td>
-                  </tr>
-                  <tr>
-                    <td>1</td>
-                    <td>Ba  con sâu</td>
-                    <td>1</td>
-                    <td>100</td>
-                    <td>5</td>
-                    <td>95000</td>
-                  </tr>
-                  <tr>
-                    <td>1</td>
-                    <td>Ba  con sâu</td>
-                    <td>1</td>
-                    <td>100</td>
-                    <td>5</td>
-                    <td>95000</td>
-                  </tr>
-                  <tr>
-                    <td>1</td>
-                    <td>Ba  con sâu</td>
-                    <td>1</td>
-                    <td>100</td>
-                    <td>5</td>
-                    <td>95000</td>
-                  </tr>
-                  <tr>
-                    <td>1</td>
-                    <td>Ba  con sâu</td>
-                    <td>1</td>
-                    <td>100</td>
-                    <td>5</td>
-                    <td>95000</td>
-                  </tr>
-
-                </tbody>
-              </table>
-            </div>
-            <div class="form-group">
-              <div class="col-sm-8 text-right">
-                <label>Tổng tiền:</label>
-              </div>
-              <div class="col-sm-3">
-                <input class="form-control" id="exampleInputName2" placeholder="0" type="text" readonly>
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="col-sm-6 text-right"> 
-                <button id="btnHuyDon" type="submit" class="btn btn-default">Hủy đơn</button> 
-              </div> 
-              <div class="col-sm-6"> 
-                <button id="btnTinhTien" type="submit" class="btn btn-primary">Tính tiền</button> 
-                </div> 
-            </div>
-          </div>
-        </div>
-      </form>
-      <!--........................ TABLE DANH SÁCH HÀNG HÓA  -  END....................................-->
-
     </div>
+    <!-- .................................  MODAL THÔNG TIN SÁCH -END ............................................-->
   </div>
+
+</div>
+
+<!--....................   PANEL - END ..................................... -->
+<!-- Trigger the modal with a button -->
+
+
+
+<!-- ...................... PAGINATION PHÂN TRANG - START ................................-->
+
+<div class="row"> 
+  <div class="col-md-11 text-right"> 
+    <div style="height:auto;overflow:auto;">
+      <ul class="pagination">
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+      </ul>
+    </div>
+
+
+  </div>
+</div>
+
+<!--........................ PAGINATION PHÂN TRANG - END ....................................-->
+
+</div>
+</div>
 </div>
 <!-- ............................................... /Content Wrapper. Contains page content................... -->
 
