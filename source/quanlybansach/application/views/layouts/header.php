@@ -72,16 +72,16 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="<?php echo base_url().'public/'; ?>dist/img/trong.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">Lường Văn Trọng</span>
+              <span class="hidden-xs"></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
                 <img src="<?php echo base_url().'public/'; ?>dist/img/trong.jpg" class="img-circle" alt="User Image">
-
+                    <?php   $userdata = $this->session->userdata('userdata'); ?>
                 <p>
-             
-                  Quản lý
+
+                 <?php echo $userdata['username'] ;?>
                 </p>
               </li>
               <!-- Menu Body -->
@@ -89,10 +89,10 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  <a href="user/info/<?php echo $userdata['id'] ?>" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="user/logout" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -116,7 +116,7 @@
           <img src="<?php echo base_url().'public/'; ?>dist/img/trong.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Lường Văn Trọng</p>
+          <p><?php echo $userdata['username'];?></p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
