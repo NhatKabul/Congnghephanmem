@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Nhập sách</title>
+	<!-- Tell the browser to be responsive to screen width -->
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<!-- Bootstrap 3.3.6 -->
+	<link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
+
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+	<!-- Ionicons -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+	<!-- Theme style -->
+	<link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+  folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">
+  <!-- iCheck for checkboxes and radio inputs -->
+  <link rel="stylesheet" href="../../plugins/iCheck/all.css">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+  <script type="text/javascript">
+  	$('frmHangHoa').on('submit', function (e) {
+  		e.preventDefault();
+  		var newName = $('frmHangHoa').find('input[type="text"]').val();
+  		$('tblHangHoa').append('<tr><td>' + newName + '</td></tr>')
+  	});
+  </script>
+  <script type="text/javascript">
+  	function AddData()
+  	{
+  		var x = document.getElementById("age").value;
+  		var y = document.getElementById("name").value;
+  		var letters = '/^[a-zA-Z]+$/'; 
+  		if((parseInt(x)!=(x))&&(y==parseInt(y))){
+  			alert("Wrong Value Entered");
+  		}
+  		else{
+  			var rows = "";
+  			var name = document.getElementById("name").value;
+  			var gender =document.querySelector('.gender:checked').value;
+  			var age = document.getElementById("age").value;
+  			var city = document.getElementById("city").value;   
+
+  			rows += "<tr><td>" + name + "</td><td>" + gender + "</td><td>" + age + "</td><td>" + city + "</td></tr>";
+  			$(rows).appendTo("#list tbody");
+  		}   
+  	}
+
+  	function ResetForm(){
+  		document.getElementById("person").reset();
+  	}
+  </script>
+</head>
+<body>
+	<h2>Add/Update Person Form</h2>
+	<div id = "data">
+		<form id = "person">    
+			<br><br>
+			Name: <input id = "name" name = "name" type = "text">
+			<br><br>
+			Gender: <input class="gender" name = "gender" type = "radio" value = "Male"> Male
+			<input class="gender" name = "gender" type = "radio" value = "Female"> Female
+			<br><br>
+			Age: &nbsp&nbsp&nbsp <input id = "age" name = "age" type = "text">
+			<br><br>
+			City: &nbsp&nbsp&nbsp<select id = "city" name = "city">
+			<option>Lahore</option>
+			<option>Islamabad</option>
+			<option>Karachi</option>
+		</select>
+		<br><br>
+		<input id = "button" type = "button" value = " Reset " onclick = "ResetForm()">&nbsp&nbsp&nbsp
+		<input id = "button" type = "button" value = " Add " onclick = "AddData()">
+		<input id = "button" type = "button" value = " Update ">
+	</form>
+</div>
+
+<h3>List Of Persons</h3>
+<div id = "tab">
+	<table id = "list" cellspacing = "0px" cellpadding = "20px" text-align = "center">
+		<thead>
+			<tr>
+				<td>Name</td>
+				<td>Gender</td>
+				<td>Age</td>
+				<td>City</td>
+				<td>Action</td>
+			</tr>
+		</thead>
+
+		<tbody>
+
+		</tbody>
+	</table>
+</div>
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+</body>
+</html>
