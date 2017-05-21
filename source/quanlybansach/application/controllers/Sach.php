@@ -16,7 +16,7 @@ class Sach extends CI_Controller
 		$data['data_info'] = $this->Sach_model->get_AllSach();
 		//print_r($data['data_info']);
 	   $data['subview'] ='admin/book/index';
-       $data['title'] = 'Thay đổi quy định';
+       $data['title'] = 'Quản lý sách';
        $this->load->view('admin/layout', $data);
 
 	}

@@ -69,6 +69,7 @@
       </div>
     </div>
     </div>
+
 </div>
 <div class="clear-fix"></div>
  <div class="modal fade col-md-12" id="myModal" role="dialog">

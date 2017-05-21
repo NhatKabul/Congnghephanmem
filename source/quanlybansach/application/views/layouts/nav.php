@@ -13,7 +13,7 @@
           </ul>
         </li>
         <li class="treeview">
-          <a href="pages/NhapSach/nhapsach.html">
+          <a href="<?php echo  base_url('nhapsach'); ?>">
             <i class="fa fa-files-o"></i>
             <span>Nhập sách</span>
             <span class="pull-right-container">
