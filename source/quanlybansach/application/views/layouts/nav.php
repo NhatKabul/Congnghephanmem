@@ -35,15 +35,15 @@
           </a>
                     <ul class="treeview-menu">
             <li><a href="sach"><i class="fa fa-circle-o"></i> Quản lý sách</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Quản lý Thể loại</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Quản lý NXB</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Quản lý NCC</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Quản lý Tác giả</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Quản lý Khách hàng</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Quản lý Hóa đơn</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Quản lý Phiếu nhập</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Quản lý Mã giảm giá</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Quản lý Nhân viên</a></li>
+            <li><a href="theloai"><i class="fa fa-circle-o"></i> Quản lý Thể loại</a></li>
+            <li><a href="nhaxuatban"><i class="fa fa-circle-o"></i> Quản lý NXB</a></li>
+            <li><a href="nhacungcap"><i class="fa fa-circle-o"></i> Quản lý NCC</a></li>
+            <li><a href="tacgia"><i class="fa fa-circle-o"></i> Quản lý Tác giả</a></li>
+            <li><a href="khachhang"><i class="fa fa-circle-o"></i> Quản lý Khách hàng</a></li>
+            <li><a href="hoadon"><i class="fa fa-circle-o"></i> Quản lý Hóa đơn</a></li>
+            <li><a href="phieunhap"><i class="fa fa-circle-o"></i> Quản lý Phiếu nhập</a></li>
+            <li><a href="magiamgia"><i class="fa fa-circle-o"></i> Quản lý Mã giảm giá</a></li>
+            <li><a href="nhanvien"><i class="fa fa-circle-o"></i> Quản lý Nhân viên</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -55,10 +55,10 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-circle-o"></i> Thống kê tháng</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Thống kê năm</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Báo cáo tháng</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Báo cáo năm</a></li>
+            <li><a href="thongke/month"><i class="fa fa-circle-o"></i> Thống kê tháng</a></li>
+            <li><a href="thongke/year"><i class="fa fa-circle-o"></i> Thống kê năm</a></li>
+            <li><a href="thongke"><i class="fa fa-circle-o"></i> Báo cáo tháng</a></li>
+            <li><a href="thongke"><i class="fa fa-circle-o"></i> Báo cáo năm</a></li>
           </ul>
         </li>
         <li class="treeview">
