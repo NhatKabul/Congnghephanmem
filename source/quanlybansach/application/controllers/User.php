@@ -28,7 +28,7 @@ class User extends admin {
    $this->form_validation->set_rules('email', 'Your Email', 'trim|required|valid_email');
   $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[4]|max_length[32]');
   if($this->form_validation->run() == FALSE) {
-     $this->load->view('admin/login', $data);
+    $this->load->view('admin/login', $data);
   } else 
   {
     $username = $this->input->post('email');
@@ -66,7 +66,7 @@ if($this->form_validation->run() == FALSE)
   else
   {
    $this->User_model->add_user();
-   $this->thank();
+   $this->index();
   }
    
 }
