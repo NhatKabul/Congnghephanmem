@@ -11,7 +11,6 @@ class Admin extends CI_Controller{
     public function index(){
       $data['subview'] ='admin/index_view';
        $data['title'] = 'admin';
-       $data['footer_info'] = 'Copyright &copy; 2016-2017 <a href="#"> Lazy team';
        $this->load->view('admin/layout', $data);  
     }
 }

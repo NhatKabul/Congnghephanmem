@@ -12,7 +12,6 @@ class User extends admin {
     }
 
     public function index(){
-
      if(($this->session->userdata('userdata')!="")) {
 
        parent::index();
