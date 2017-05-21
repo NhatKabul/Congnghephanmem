@@ -17,88 +17,80 @@
 </div>
 </div>
 <div class="panel-body" style="max-height: 800;overflow-y: scroll;">
-  <div class=""> 
-    <div class="row"> 
-      <div class="col-md-12"> 
-        <div style="min-height: 500px;overflow:auto;">
-          <table class="table table-bordered table-hover">
-            <thead>
+  <div class="row"> 
+    <div class="col-md-12"> 
+      <div style="min-height: 500px;overflow:auto;">
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>
+                <div class="text-center">
+                  <input id="chkCheckAll" type="checkbox" value="">
+                </div>
+              </th>
+
+              <th>Mã Sách</th>
+              <th>Tên Sách</th>
+
+              <th>Sửa</th>
+              <th>Xóa</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php 
+            $stt =0;
+            foreach ($data_info as $key => $value) {
+              $stt++;
+              $masach = $value['masach'];
+              ?>
               <tr>
-                <th>
-                  <div class="text-center">
-                    <input id="chkCheckAll" type="checkbox" value="">
-                  </div>
-                </th>
-
-                <th>Mã Sách</th>
-                <th>Tên Sách</th>
-
-                <th>Sửa</th>
-                <th>Xóa</th>
-              </tr>
-
-            </thead>
-            <tbody>
-              <?php 
-              $stt =0;
-              foreach ($data_info as $key => $value) {
-                $stt++;
-                $masach = $value['masach'];
-                ?>
-                
-                <tr>
-                 <td>
-                   <div class='text-center'>
-                    <?php echo $stt; ?>
-                  </div>
-                </td>
-
-                <td> <?php echo $value['masach']; ?></td>
-                <td><?php echo $value['tensach']; ?></td>
-
-
-                <td><a class='chitietsach' href='' data-id='<?php echo $masach ;?>' data-toggle='modal' data-target='#myModal'>Sửa</a></td>
-                <td><a href='#'>Xóa</a></td>
-              </tr>
-              <?php   } ?>
-
-            </tbody>
-          </table>
-        </div>
+               <td>
+                 <div class='text-center'>
+                  <?php echo $stt; ?>
+                </div>
+              </td>
+              <td> <?php echo $value['masach']; ?></td>
+              <td><?php echo $value['tensach']; ?></td>
+              <td><a class='chitietsach' href='' data-id='<?php echo $masach ;?>' data-toggle='modal' data-target='#myModal'>Sửa</a></td>
+              <td><a href='#'>Xóa</a></td>
+            </tr>
+            <?php }?>
+            <tr>
+              <td style="text-align: center;" colspan="5"><?php echo $links; ?></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
-  </div>
-</div>
-</div>
-<div class="clear-fix"></div>
-<div class="modal fade col-md-12" id="myModal" role="dialog">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">THÔNG TIN SÁCH</h4>
-       
-        <div class="alert-success" id="message" ">
-         
+    </div>
+    </div>
+    </div>
+  <div class="clear-fix"></div>
+  <div class="modal fade col-md-12" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">THÔNG TIN SÁCH</h4>
+
+          <div class="alert-success" id="message" ">
+
+          </div>
         </div>
-      </div>
 
-      <div class="modal-body">
+        <div class="modal-body">
+          <div class="row"> 
+            <div class="col-md-offset-1 col-md-12"> 
+              <form action="#" method="post" class="form-horizontal" id="frmSach" enctype="multipart/form-data"> 
+               <!-- <div class="header"><label>Thông tin sách:</label></div> -->
+               <div class="form-content"> 
 
-
-
-        <div class="row"> 
-          <div class="col-md-offset-1 col-md-12"> 
-            <form action="#" method="post" class="form-horizontal" id="frmSach" enctype="multipart/form-data"> 
-             <!-- <div class="header"><label>Thông tin sách:</label></div> -->
-             <div class="form-content"> 
-
-              <div class="form-group">
-                <div class="col-sm-6">
-                  <div class="col-sm-12"><label>Tên sách:</label> <input class="form-control" name="txtTenSach" id="txtTenSach" placeholder="Tên Sách" type="text" value="" >  
-                  </div>
-                  <div class="col-sm-6"><label>Mã sách:</label> <input class="form-control" name="txtMaSach" id="txtMaSach" placeholder="Mã Sách" type="text" value=""  readonly>  
-                  </div> 
+                <div class="form-group">
+                  <div class="col-sm-6">
+                    <div class="col-sm-12"><label>Tên sách:</label> <input class="form-control" name="txtTenSach" id="txtTenSach" placeholder="Tên Sách" type="text" value="" >  
+                    </div>
+                    <div class="col-sm-6"><label>Mã sách:</label> <input class="form-control" name="txtMaSach" id="txtMaSach" placeholder="Mã Sách" type="text" value=""  readonly>  
+                    </div> 
 
                   <!--<div class="col-sm-6"> <label>Ngày nhập:</label><input class="form-control" id="txtNgayNhap" placeholder="Tên sách" type="text" value="" >
                 </div> -->
@@ -212,10 +204,10 @@
      //  alert("ccc");
      $("#message").text(resp.message);
 
-       setTimeout(window.location.reload(), 2000);
-     },
-     error: function(resp) { alert(JSON.stringify(resp)); }
-   });
+     setTimeout(window.location.reload(), 2000);
+   },
+   error: function(resp) { alert(JSON.stringify(resp)); }
+ });
      return false;    
    });
 

@@ -8,6 +8,7 @@ class Sach_model extends CI_Model
 			# code...
 		parent::__construct();
 		$this->load->database();
+		
 	}
 
 	public function get_AllSach()
@@ -37,6 +38,18 @@ class Sach_model extends CI_Model
 				return 1;
 			return 0;
 		}
+		/* get danh sach sach theo kieu phan trang */
+		public function get_DanhsachPhanTrang($limit, $start)
+		{
+			$this->db->select("*");//lấy tất cả trường dữ liệu trong bảng
+			$this->db->limit($limit, $start);
+			$query = $this->db->get("sach");
+			return $query->result_array();
+		}
+		public function record_count()
+		{
+        	return $this->db->count_all("sach");
+   	 	}
 
 	}
 	?>	
