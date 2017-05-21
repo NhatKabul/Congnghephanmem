@@ -95,8 +95,8 @@
  $(document).ready(function() {
   $('#slnhaptothieukhinhap').click(function(e){
      $("#giatri").val($(this).data('value'));
-     console.log((this).attr('id'));
-     $("#name").val($("#name").val($(this).attr('id')));
+    // console.log((this).attr('id'));
+     //$("#name").val($("#name").val($(this).attr('id')));
      $("#updatethamso").modal('show')
   });
   /*ham cap nhat du lieu bang ajax*/

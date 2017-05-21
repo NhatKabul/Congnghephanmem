@@ -34,7 +34,7 @@
             </span>
           </a>
                     <ul class="treeview-menu">
-            <li><a href="pages/quanly/qlsach.html"><i class="fa fa-circle-o"></i> Quản lý sách</a></li>
+            <li><a href="sach"><i class="fa fa-circle-o"></i> Quản lý sách</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> Quản lý Thể loại</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> Quản lý NXB</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> Quản lý NCC</a></li>

@@ -40,7 +40,7 @@ class Theloai extends CI_Controller {
         curl_setopt($curl, CURLOPT_HEADER, false);
         $data = curl_exec($curl);
         curl_close($curl);
-        print_r($data);
+       // print_r($data);
       
 
     }
