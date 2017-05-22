@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'm2rds.cgmhufuhxfnc.ap-southeast-1.rds.amazonaws.com',
-	'username' => 'vmax',
-	'password' => '123456987',
-	'database' => 'priqls',
+	'hostname' => 'sql12.freesqldatabase.com',
+	'username' => 'sql12175835',
+	'password' => 'Y3a6uHTPlZ',
+	'database' => 'sql12175835',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

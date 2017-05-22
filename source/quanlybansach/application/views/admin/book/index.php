@@ -101,7 +101,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-calendar"></i>
                     </div>
-                    <input type="text" class="form-control pull-right" name="txtNgayNhap" id="txtNgayNhap"> <!--datepicker -->
+                    <input type="text" data-date-format='yyyy-mm-dd' class="form-control pull-right" name="txtNgayNhap" id="txtNgayNhap" readonly> <!--datepicker -->
                   </div>
                 </div>
 
@@ -247,8 +247,9 @@
      </div>
    </div>
  </form> 
- <div class="row"></div>
-
+ <div class="row">
+ </div>
+</div>
  <!-- ./MODAL THÊM SÁCH  -->
 
 
@@ -350,11 +351,11 @@
         alert(resp.message);
 
 
-     setTimeout(window.location.reload());
-   },
+        setTimeout(window.location.reload());
+      },
    error: function(resp) { //alert(JSON.stringify(resp));
     alert(resp.message);}
- });
+  });
     return false;    
 
 
@@ -431,5 +432,18 @@ $('#btnThemSach2').click(function () {
 
 });
 
+// datepicker
+$(function()
+{
+  $("#txtNgayNhap").datepicker({
+    dateFormat: "dd/mm/yy",
+    changeYear: true,
+    changeMonth: true,
+    yearRange: "1950:2017"
+  });
+
+
+  
+});
 
 </script>
