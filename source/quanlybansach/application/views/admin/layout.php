@@ -11,7 +11,9 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
   <!-- Ionicons -->
-
+  <script src="<?php echo base_url().'public/'; ?>plugins/jQuery/jquery-2.2.3.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo base_url().'public/'; ?>dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -20,7 +22,7 @@
   <!-- iCheck -->
   <link rel="stylesheet" href="<?php echo base_url().'public/'; ?>plugins/iCheck/flat/blue.css">
   <!-- Morris chart -->
-  <link rel="stylesheet" href="<?php echo base_url().'public/'; ?>plugins/morris/morris.css">
+  <link rel="stylesheet" href="<?php echo base_url().'public/'; ?>plugins/morris/morris.css"> 
   <!-- jvectormap -->
   <link rel="stylesheet" href="<?php echo base_url().'public/'; ?>plugins/jvectormap/jquery-jvectormap-1.2.2.css">
   <!-- Date Picker -->
@@ -29,10 +31,10 @@
   <link rel="stylesheet" href="<?php echo base_url().'public/'; ?>plugins/daterangepicker/daterangepicker.css">
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="<?php echo base_url().'public/'; ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
-  <script src="<?php echo base_url().'public/'; ?>plugins/jQuery/jquery-2.2.3.min.js"></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-<script src="<?php echo base_url().'public/'; ?>plugins/morris/morris.min.js"></script>
+<script src="<?php echo base_url().'public/'; ?>web/custom.js"></script> 
+<link rel="stylesheet" href="<?php echo base_url().'public/'; ?>web/custom.css/">
+<script src="<?php echo base_url().'public/'; ?>plugins/morris/morris.min.js"></script> 
+
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

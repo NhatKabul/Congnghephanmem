@@ -9,139 +9,441 @@
        </label>
      </div>
      <div class="col-md-2 col-sm-2 col-xs-5">
-      <a href="sach/insert  "><button type="button" class="btn btn-success">
+       <button type="button" class="btn btn-success" id="btnThemSach"  data-toggle="modal" data-target="#modalThemSach">
         <span class="glyphicon glyphicon-plus-sign"></span> Thêm sách
       </button>
-    </a>
+
+
+
+    </div>
   </div>
 </div>
-</div>
 <div class="panel-body" style="max-height: 800;overflow-y: scroll;">
-  <div class=""> 
-    <div class="row"> 
-      <div class="col-md-12"> 
-        <div style="min-height: 500px;overflow:auto;">
-          <table class="table table-bordered table-hover">
-            <thead>
-              <tr>
-                <th>
-                  <div class="text-center">
-                    <input id="chkCheckAll" type="checkbox" value="">
-                  </div>
-                </th>
+  <div class="row"> 
+    <div class="col-md-12"> 
+      <div style="min-height: 500px;overflow:auto;">
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>
+                <div class="text-center">
+                  <input id="chkCheckAll" type="checkbox" value="">
+                </div>
+              </th>
 
-                <th>Mã Sách</th>
-                <th>Tên Sách</th>
-                <th>Chi tiết</th>
-                <th>Sửa</th>
-                <th>Xóa</th>
-              </tr>
+              <th>Mã Sách</th>
+              <th>Tên Sách</th>
 
-            </thead>
-            <tbody>
+              <th>Sửa</th>
+              <th>Xóa</th>
+            </tr>
+          </thead>
+          <tbody>
             <?php 
             $stt =0;
             foreach ($data_info as $key => $value) {
-                    $stt++;
-                    $masach = $value['masach'];
-            ?>
-                
-                    <tr>
-                     <td>
-                       <div class='text-center'>
-                        <?php echo $stt; ?>
-                       </div>
-                     </td>
-
-                     <td> <?php echo $value['masach']; ?></td>
-                     <td><?php $value['tensach']; ?></td>
-                     <td><a class='chitietsach' href='#?masach1=$masach' data-id="<?php echo $masach ?>" data-toggle='modal' data-target='#myModal'>Chi tiết</a></td>
-
-                     <td><a href='#'>Sửa</a></td>
-                     <td><a href='#'>Xóa</a></td>
-                   </tr>
-               <?php   } ?>
-           
-            </tbody>
-          </table>
-        </div>
-      </div>
+              $stt++;
+              $masach = $value['masach'];
+              ?>
+              <tr>
+               <td>
+                 <div class='text-center'>
+                  <?php echo $stt; ?>
+                </div>
+              </td>
+              <td> <?php echo $value['masach']; ?></td>
+              <td><?php echo $value['tensach']; ?></td>
+              <td><a class='chitietsach' href='' data-id='<?php echo $masach ;?>' data-toggle='modal' data-target='#myModal'>Sửa</a></td>
+              <td><a class='xoasach' href='' data-id='<?php echo $masach ;?>' >Xóa</a></td>
+            </tr>
+            <?php }?>
+            <tr>
+              <td style="text-align: center;" colspan="5"><?php echo $links; ?></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
-    </div>
+  </div>
+</div>
 </div>
 <div class="clear-fix"></div>
- <div class="modal fade col-md-12" id="myModal" role="dialog">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">THÔNG TIN SÁCH</h4>
-            </div>
-            <div class="modal-body">
+<div class="modal fade col-md-12" id="myModal" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">THÔNG TIN SÁCH</h4>
 
+        <div class="alert-success" id="message" ">
 
+        </div>
+      </div>
 
-              <div class="row"> 
-                <div class="col-md-offset-1 col-md-12"> 
-                  <form action="#" method="post" class="form-horizontal" id="frm-hang-hoa"> 
-                   <!-- <div class="header"><label>Thông tin sách:</label></div> -->
-                   <div class="form-content"> 
+      <div class="modal-body">
+        <div class="row"> 
+          <div class="col-md-offset-1 col-md-12"> 
+            <form action="#" method="post" class="form-horizontal" id="frmSach" enctype="multipart/form-data"> 
+             <!-- <div class="header"><label>Thông tin sách:</label></div> -->
+             <div class="form-content"> 
 
-                    <div class="form-group">
-                      <div class="col-sm-6">
-                        <div class="col-sm-12"><label>Tên sách:</label> <input class="form-control" id="txtTenSach" placeholder="Mã Sách" type="text" value="You are the aple of my eye" readonly>  
-                        </div>
-                        <div class="col-sm-6"><label>Mã sách:</label> <input class="form-control" id="txtMaSach" placeholder="Mã Sách" type="text" value="01" readonly>  
-                        </div> 
-
-                        <div class="col-sm-6"> <label>Ngày nhập:</label><input class="form-control" id="txtNgayNhap" placeholder="Tên sách" type="text" value="1/1/2017" readonly>
-                        </div> 
-                        <div class="col-sm-6"><label>Số lượng:</label> <input class="form-control" id="txtMaSach" placeholder="Số lượng" type="text" value="100" readonly>  
-                        </div> 
-
-                        <div class="col-sm-6"> <label>Giá bán:</label> <input class="form-control" id="txtSoLuong" placeholder="Giá bán" type="text" value="100000" readonly>
-                        </div> 
-                      </div>
-                      <div class="col-sm-3" style="min-height: 180px;">
-                        <br>
-                        <img class="img-thumbnail" src="../../dist/img/you-are-the-aple-of-my-eye.jpg" alt="Chania">
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="col-sm-12">
-                        <div class="col-sm-5"> <label>Thể loại:</label><input class="form-control" id="txtTheLoai" placeholder="Thể loại" type="text" value="Truyện tình" readonly> 
-                        </div> 
-                        <div class="col-sm-5"> <label>Tác giả:</label><input class="form-control" id="txtTacGia" placeholder="Tác giả" type="text" value="Cửu Bả Đao" readonly> 
-                        </div> 
-                      </div> 
-                    </div>
-                    <div class="form-group">
-                      <div class="col-sm-12">
-                        <div class="col-sm-5"> <label>Nhà xuất bản:</label><input class="form-control" id="txtNXB" placeholder="Nhà xuất bản" type="text" value="Tuổi trẻ" readonly> 
-                        </div> 
-                        <div class="col-sm-5"> <label>Nhà cung cấp:</label><input class="form-control" id="txtNCC" placeholder="Nhà cung cấp" type="text" value="ATM Education" readonly> 
-                        </div> 
-                      </div> 
-                    </div>
-
-
-
+              <div class="form-group">
+                <div class="col-sm-6">
+                  <div class="col-sm-12"><label>Tên sách:</label> <input class="form-control" name="txtTenSach" id="txtTenSach" placeholder="Tên Sách" type="text" value="" >  
+                  </div>
+                  <div class="col-sm-6"><label>Mã sách:</label> <input class="form-control" name="txtMaSach" id="txtMaSach" placeholder="Mã Sách" type="text" value=""  readonly>  
                   </div> 
+
+                  <!--<div class="col-sm-6"> <label>Ngày nhập:</label><input class="form-control" id="txtNgayNhap" placeholder="Tên sách" type="text" value="" >
+                </div> -->
+                <div class="col-sm-6"> <label>Ngày nhập:</label>
+                  <div class="input-group date">
+                    <div class="input-group-addon">
+                      <i class="fa fa-calendar"></i>
+                    </div>
+                    <input type="text" data-date-format='yyyy-mm-dd' class="form-control pull-right" name="txtNgayNhap" id="txtNgayNhap" readonly> <!--datepicker -->
+                  </div>
+                </div>
+
+                <div class="col-sm-6"><label>Số lượng:</label> <input class="form-control" name="txtSoLuong" id="txtSoLuong" placeholder="Số lượng" type="text" value="" >  
+                </div> 
+
+                <div class="col-sm-6"> <label>Giá bán:</label> <input class="form-control" name="txtGiaBan" id="txtGiaBan" placeholder="Giá bán" type="text" value="" >
+                </div> 
+              </div>
+              <div class="col-sm-3" style="min-height: 180px;">
+                <br>
+                <img class="img-thumbnail" name="imgHinhSach" id="imgHinhSach" src="" alt="Chania"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-12">
+                <div class="col-sm-5"> <label>Thể loại:</label><input class="form-control" name="txtTheLoai" id="txtTheLoai" placeholder="Thể loại" type="text" value="" > 
+                </div> 
+                <div class="col-sm-5"> <label>Tác giả:</label><input class="form-control" name="txtTacGia" id="txtTacGia" placeholder="Tác giả" type="text" value="" > 
+                </div> 
+              </div> 
+            </div>
+            <div class="form-group">
+              <div class="col-sm-12">
+                <div class="col-sm-5"> <label>Nhà xuất bản:</label><input class="form-control" name="txtNXB" id="txtNXB" placeholder="Nhà xuất bản" type="text" value="" > 
+                </div> 
+                <div class="col-sm-5"> <label>Nhà cung cấp:</label><input class="form-control" name="txtNCC" id="txtNCC" placeholder="Nhà cung cấp" type="text" value="" > 
+                </div> 
+              </div> 
+            </div>
+
+
+
+          </div> 
 
                  <!-- <div class="footer clearfix"> 
                     <button type="button" class="btn btn-default">Xác nhận</button> 
                   </div> -->
-                </form> 
+
+                </div> 
               </div> 
-            </div> 
 
 
 
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+            <div class="modal-footer">
+             <div class="col-xs-6 col-md-6 text-right">
+               <br><label><button id="btnHuy" type="submit" class="btn btn-default">Hủy</button></label> 
+             </div>
+
+             <div class="col-xs-6 col-md-6 text-left">
+               <br><label><button name="btnCapNhat" id="btnCapNhat" type="submit" class="btn btn-primary">Cập nhật</button></label> 
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+   </form> 
+   <div class="row"></div>
+
+   <?php
+   // $str = "tâm-lan-huyền";
+   // $cc=(explode("-",$str));
+   // echo $cc[0];
+//giới hạn chỉ 2 phần tử
+ //  print_r(explode("-",$str,2));
+   ?>
+   <!-- MODAL THÊM SÁCH -->
+
+   <div class="clear-fix"></div>
+   <div class="modal fade col-md-12" id="modalThemSach" role="dialog">
+
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">THÊM SÁCH BÁN</h4>
+
+          <div class="alert-success" id="message" ">
+
           </div>
         </div>
-      </div>
-    </div>
+
+        <div class="modal-body">
+          <form action="#" method="post" class="form-horizontal" id="frmThemSach" enctype="multipart/form-data"> 
+            <div class="row"> 
+
+
+
+              <div class="row">
+                <div class="col-md-1 col-sm-1"></div>
+                <div class="col-md-10 col-sm-10 col-xs-12" style="outline: 1px solid orange;">
+                  <br>
+                  <div class="col-md-8 col-sm-8 col-xs-12">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                      <label for="sel1">Mã sách:</label>
+                      <select class="form-control" name="selSachBan" id="selSachBan">
+                        <option selected disabled>Mã Sách - Tên Sách - Giá nhập</option>
+                        <?php
+
+                        {
+                          foreach ($data_info_status_0 as $key => $value)
+                          {
+                            echo "<option>".$value['masach']."-".$value['tensach']."-".$value['gianhap']." VNĐ"."</option>";
+                          }
+                        }
+                        ?>
+                      </select>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                      <label for="sel1">Giá bán:</label>
+                      <input class="form-control" id="txtGiaBanSach" name="txtGiaBanSach" placeholder="Nhập giá bán" type="text" >
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                      <label for="sel1">Chọn hình ảnh:</label>
+                      <input class="form-control" name="imgSach" id="imgSach" name="imgInp" type="file" onChange="validate(this.value)">
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-sm-4 col-xs-12" id="hinhanh">
+                    <br>
+                    <img class="img-thumbnail" id="hienthiImg" src="../../../public/dist/img/book-default.png" alt="Hinh-anh-sach">
+                  </div>
+                </div>
+              </div>
+
+
+
+            </div>
+            <div class="modal-footer">
+             <div class="col-xs-6 col-md-6 text-right">
+               <br><label><button type="button" id="btnHuy" class="btn btn-default" data-dismiss="modal">Hủy</button></label>
+
+
+
+             </div>
+
+             <div class="col-xs-6 col-md-6 text-left">
+               <br><label><button id="btnThemSach2" type="submit" class="btn btn-primary">Cập nhật</button></label> 
+             </div>
+           </div>
+         </from>
+       </div>
+     </div>
+   </div>
+ </form> 
+ <div class="row">
+ </div>
+</div>
+ <!-- ./MODAL THÊM SÁCH  -->
+
+
+
+
+
+ <script>
+  $(".chitietsach").click(function(){
+    console.log($(this).data('id'));
+    $.ajax({
+      type: "POST",
+      dataType: 'json',
+      url:"<?php echo site_url('sach/chitiet') ;?>",
+      data : {
+        id:$(this).data('id')
+      },
+      success: function(resp){
+         // alert("vv");
+        // console.log(resp);
+        $('#txtMaSach').val(resp.data_info[0].masach);
+        $('#txtTenSach').val(resp.data_info[0].tensach);
+        $('#txtNgayNhap').val(resp.data_info[0].ngaynhap);
+        $('#txtSoLuong').val(resp.data_info[0].soluong);
+        $('#txtGiaBan').val(resp.data_info[0].giaban);
+        $('#txtTacGia').val(resp.data_info[0].tacgia);
+        $('#txtTheLoai').val(resp.data_info[0].theloai);
+        $('#txtNXB').val(resp.data_info[0].nhaxuatban);
+        $('#txtNCC').val(resp.data_info[0].mancc);
+        var hinh="<?php echo base_url().'public/'; ?>dist/img/"+resp.data_info[0].hinhanh;
+        $("#imgHinhSach").attr("src",hinh);
+      },
+      error: function(resp) { alert(JSON.stringify(resp)); }
+    });
+  });
+
+  $("#btnCapNhat").click(function()
+  {
+    var dataform = $("#frmSach").serialize();
+     // console.log(dataform);
+
+     $.ajax({
+      type: "POST",
+      dataType: 'json',
+      url:"<?php echo site_url('sach/capnhat') ;?>",
+      data : dataform,
+      success: function(resp){
+        console.log(resp.message);
+       //alert(resp.status);
+     //  alert("ccc");
+     $("#message").text(resp.message);
+
+     setTimeout(window.location.reload(), 2000);
+   },
+   error: function(resp) { alert(JSON.stringify(resp)); }
+ });
+     return false;    
+   });
+
+
+
+  $(".xoasach").click(function()
+  {
+     // alert($(this).data('id'));
+     // console.log($(this).data('id'));
+      //console.log($(this).data('id'));
+      $.ajax({
+        type: "POST",
+        dataType: 'json',
+        url:"<?php echo site_url('sach/xoasach') ;?>",
+        data : {
+          id:$(this).data('id')
+        },
+        success: function(resp){
+          alert("Xóa sách thành công");
+          //alert(resp.message);
+         // console.log(resp.message);
+         setTimeout(window.location.reload());
+       },
+       error: function(resp) { alert(JSON.stringify(resp)); }
+     });
+      return false;    
+    });
+
+
+
+  $("#btnThemSach2").click(function()
+  {
+    var dataform = $("#frmThemSach").serialize();
+   // console.log(dataform);
+  //  var dataSelect: $('#selSachBan').val();
+    // console.log(dataSelect);
+
+    $.ajax({
+      type: "POST",
+      dataType: 'json',
+      url:"<?php echo site_url('sach/themsach') ;?>",
+      data : dataform,
+      success: function(resp){
+        alert(resp.message);
+
+
+        setTimeout(window.location.reload());
+      },
+   error: function(resp) { //alert(JSON.stringify(resp));
+    alert(resp.message);}
+  });
+    return false;    
+
+
+  });
+
+
+
+     //  $.ajax({
+     //    type: "POST",
+     //    dataType: 'json',
+     //    url:"<?php //echo site_url('sach/themsach') ;?>",
+     //    // data : {
+     //    //   id:$(this).data('id')
+     //    // },
+     //    success: function(resp){
+     //      alert("Xóa sách thành công");
+     //      //alert(resp.message);
+     //     // console.log(resp.message);
+     //     setTimeout(window.location.reload());
+     //   },
+     //   error: function(resp) { alert(JSON.stringify(resp)); }
+     // });
+    // return false;
+
+
+
+//REVIEW IMG
+function readURL(input) {
+
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+      $('#hienthiImg').attr('src', e.target.result);
+    }
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+$("#imgSach").change(function(){
+  readURL(this);
+});
+
+// ./REVIEW IMG
+
+//  VALIDATE FORM NHẬP SÁCH
+$('#btnThemSach2').click(function () {
+
+    // Get the Login Name value and trim it
+
+    var checkPrice = $.trim($('#txtGiaBanSach').val());
+    var checkImg=$('img')[3].src;
+    var checkImg2 = checkImg.indexOf("book-default");
+   // var checkImg3=$('.hinhanh img').attr('src');
+
+    // Check if empty of not
+    if (checkPrice==='') 
+    {
+      alert('Thiếu thông tin vui lòng kiểm tra lại');
+
+
+    // alert( $('img')[3].src );
+    return false;
+  }
+
+  
+  if($.isNumeric($('#txtGiaBanSach').val()) === false)
+  {
+    alert('Giá bán phải có kiểu số. vui lòng kiểm tra lại');
+    return false;
+  }
+
+
+});
+
+// datepicker
+$(function()
+{
+  $("#txtNgayNhap").datepicker({
+    dateFormat: "dd/mm/yy",
+    changeYear: true,
+    changeMonth: true,
+    yearRange: "1950:2017"
+  });
+
+
+  
+});
+
+</script>
