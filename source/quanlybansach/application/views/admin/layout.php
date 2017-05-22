@@ -35,6 +35,7 @@
 <link rel="stylesheet" href="<?php echo base_url().'public/'; ?>web/custom.css/">
 <script src="<?php echo base_url().'public/'; ?>plugins/morris/morris.min.js"></script> 
 
+
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
