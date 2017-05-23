@@ -1,6 +1,6 @@
 <?php  
  if (!defined('BASEPATH')) exit('No direct script access allowed');
- class Setting_model extends CI_MODEL {
+ class Caidat_model extends CI_MODEL {
  	public  $table = 'thamso';
   public $slnhaptothieukhinhap = 150;
   public $sltontoidakhinhap = 300;

@@ -41,7 +41,7 @@ class Theloai extends CI_Controller {
         $data["links"] = $this->pagination->create_links();
         //$data['data_info'] = $this->Sach_model->get_AllSach();
         $data['subview'] ='admin/theloai/index';
-        $data['title'] = 'Quản lý sách';
+        $data['title'] = 'Thể loại sách';
         //$data['data_info_status_0']=$this->Sach_model->get_Sach_By_Status(0);
         $this->load->view('admin/layout', $data);
     }
@@ -85,14 +85,11 @@ class Theloai extends CI_Controller {
     {
         $matl = $this->input->post('txtMatl');
         $dataTheLoai=array(
-            
             "tentl" => $this->input->post('txtTentl'),
             );
 
         header('Content-Type: application/json');
         $effect=$this->Theloai_model->capnhattheloai($matl,$dataTheLoai);
-        echo $effect; 
-
      if($effect==1)
         {
             $data = array(
@@ -103,6 +100,42 @@ class Theloai extends CI_Controller {
         }  
       
     }
+        public function deleteTheLoai()
+    {
+        header('Content-Type: application/json');
+        $maTheloai= $this->input->post('id');
+        
+        $effect=$this->Theloai_model->deleteTheLoai($maTheloai);
+        //echo $effect; 
+        if($effect==1)
+        {
+            $data = array(
+                "status"=>"1",
+                "message"=>"Thành công"
+                );
+            echo json_encode($data);
+        }
+    }
+    public function themTheLoai()
+    {
+       
+        $dataTheLoai=array(
+            'matl' => $this->input->post('istxtMatl'),
+            "tentl" => $this->input->post('istxtTentl'),
+            );
+        header('Content-Type: application/json');
+        $effect=$this->Theloai_model->ThemTheLoai($dataTheLoai);
+        if($effect==1)
+        {
+            $data = array(
+                "status"=>"1",
+                "message"=>"Thêm Thành công"
+                );
+            echo json_encode($data);
+        }  
+      
+    }
+
 
 
 }

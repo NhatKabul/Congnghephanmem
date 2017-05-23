@@ -8,16 +8,13 @@ class Nhapsach extends CI_Controller
 	{
 			# code...
 		parent::__construct();
-		//$this->load->model('Nhapsach_model');
-
+		$this->load->model('Nhapsach_model');
 	}
 	public function index()
 	{
-		//$data['data_info'] = $this->Sach_model->get_AllSach();
-		//print_r($data['data_info']);
+	   $data['data_info'] = $this->Nhapsach_model->get_AllSach();
 	   $data['subview'] ='admin/nhapsach/index';
        $data['title'] = 'Nhap sach';
        $this->load->view('admin/layout', $data);
-
 	}
 }

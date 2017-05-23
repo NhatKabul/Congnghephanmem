@@ -70,7 +70,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-circle-o"></i> Quy định nhập</a></li>
+            <li><a href="<?php echo  base_url('caidat'); ?>"><i class="fa fa-circle-o"></i> Quy định nhập</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> Quy định dư nợ khách hàng</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> Quy định chiết khấu</a></li>
             

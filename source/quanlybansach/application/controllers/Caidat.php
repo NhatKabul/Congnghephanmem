@@ -1,20 +1,20 @@
 <?php 
-class Setting extends CI_Controller {
+class Caidat extends CI_Controller {
     public function __construct() {
         parent::__construct();
-        $this->load->model('Setting_model');
+        $this->load->model('Caidat_model');
       
     }
      
     public function index()
     {
-       $data['subview'] ='admin/setting/setting';
+       $data['subview'] ='admin/caidat/index';
        $data['title'] = 'Thay đổi quy định';
 
-       $data['slnhaptothieukhinhap'] = $this->Setting_model->get_slnhaptothieukhinhap();
-       $data['sltontoidakhinhap'] = $this->Setting_model->get_sltontoidakhinhap();
-       $data['sotiennotoida'] = $this->Setting_model->get_sotiennotoida();
-       $data['sltontoithieukhiban'] = $this->Setting_model->get_sltontoithieukhiban();
+       $data['slnhaptothieukhinhap'] = $this->Caidat_model->get_slnhaptothieukhinhap();
+       $data['sltontoidakhinhap'] = $this->Caidat_model->get_sltontoidakhinhap();
+       $data['sotiennotoida'] = $this->Caidat_model->get_sotiennotoida();
+       $data['sltontoithieukhiban'] = $this->Caidat_model->get_sltontoithieukhiban();
 
        $this->load->view('admin/layout', $data); 
     }
