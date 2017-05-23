@@ -228,6 +228,10 @@
      // alert($(this).data('id'));
      // console.log($(this).data('id'));
       //console.log($(this).data('id'));
+       var ma = $(this).data('id');
+    var answer = confirm('bán có muốn xóa mã ' +ma +' không ?');
+    if(answer == true)
+    {
       $.ajax({
         type: "POST",
         dataType: 'json',
@@ -243,6 +247,7 @@
        },
        error: function(resp) { alert(JSON.stringify(resp)); }
      });
+    }
       return false;    
     });
 
