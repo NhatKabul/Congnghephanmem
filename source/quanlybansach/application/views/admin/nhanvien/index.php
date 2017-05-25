@@ -5,15 +5,13 @@
     <div class="row">
      <div class="col-md-10 col-sm-10 col-xs-7">
        <label>
-         QUẢN LÝ SÁCH
+         
        </label>
      </div>
      <div class="col-md-2 col-sm-2 col-xs-5">
        <button type="button" class="btn btn-success" id="btnThemSach"  data-toggle="modal" data-target="#modalThemSach">
-        <span class="glyphicon glyphicon-plus-sign"></span> Thêm sách
+        <span class="glyphicon glyphicon-plus-sign"></span> Thêm Nhân viên
       </button>
-
-
 
     </div>
   </div>
@@ -31,9 +29,9 @@
                 </div>
               </th>
 
-              <th>Mã Sách</th>
-              <th>Tên Sách</th>
-
+              <th>Mã Nhân viên</th>
+              <th>Tên Nhân viên</th>
+               <th>email</th>
               <th>Sửa</th>
               <th>Xóa</th>
             </tr>
@@ -53,8 +51,9 @@
               </td>
               <td> <?php echo $value['manv']; ?></td>
               <td><?php echo $value['tennv']; ?></td>
-              <td><a class='chitietsach' href='' data-id='<?php echo $masach ;?>' data-toggle='modal' data-target='#myModal'>Sửa</a></td>
-              <td><a class='xoasach' href='' data-id='<?php echo $masach ;?>' >Xóa</a></td>
+               <td><?php echo $value['email']; ?></td>
+              <td><a class='chitietsach' href='' data-id='<?php echo $masach ;?>' data-toggle='modal' data-target='#myModal'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
+              <td><a class='xoasach' href='' data-id='<?php echo $masach ;?>' ><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
             </tr>
             <?php }?>
             <tr>
@@ -180,8 +179,8 @@
                 <div class="col-md-6 col-sm-6 col-xs-12">
                   <label for="sel1">Giới tính:</label>
                   <select class="form-control" name="selGioiTinh2" id="selGioiTinh2">
-                    <option>Nam</option>
-                    <option>Nữ</option>
+                    <option value="1">Nam</option>
+                    <option value="0">Nữ</option>
                   </select>
                 </div>
                 <div class="col-md-6 col-sm-6 col-xs-12"><label>Ngày sinh:</label>
@@ -199,7 +198,7 @@
                 </div>
                 <div class="col-md-6 col-sm-6 col-xs-6">
                   <label for="sel1">Chọn hình ảnh:</label>
-                  <input class="form-control" name="imgSach2" id="imgSach2" name="imgInp2" type="file" onChange="validate(this.value)">
+                  <input class="form-control" name="imgSach2" id="imgSach2" type="file" onChange="validate(this.value)">
                 </div>
               </div>
               <div class="col-md-4 col-sm-4 col-xs-12" id="hinhanh">
@@ -219,15 +218,15 @@
               <div class="col-md-6 col-sm-6 col-xs-12">
                 <label for="sel1">Chức vụ:</label>
                 <select class="form-control" name="selChucVu2" id="selChucVu2">
-                  <option>Nhân viên</option>
-                  <option>Quản lý</option>
+                  <option value="0">Nhân viên</option>
+                  <option value="1">Quản lý</option>
                 </select>
               </div>
               <div class="col-md-6 col-sm-6 col-xs-12">
                 <label for="sel1">Tình trạng tài khoản:</label>
                 <select class="form-control" name="selTTTK2" id="selTTTK2">
-                  <option>Bình thường</option>
-                  <option>Khóa</option>
+                  <option value="1">Bình thường</option>
+                  <option value="0">Khóa</option>
                 </select>
               </div>
             </div>
@@ -240,9 +239,6 @@
         <div class="modal-footer">
          <div class="col-xs-6 col-md-6 text-right">
            <br><label><button type="button" id="btnHuy" class="btn btn-default" data-dismiss="modal">Hủy</button></label>
-
-
-
          </div>
 
          <div class="col-xs-6 col-md-6 text-left">
@@ -347,30 +343,44 @@
 
 
 
-  $("#btnThemNV2").click(function()
+  $("#btnThemNV2").click(function(e)
   {
-    var dataform = $("#frmThemNV").serialize();
-   // console.log(dataform);
-  //  var dataSelect: $('#selSachBan').val();
-    // console.log(dataSelect);
-//alert(dataform);
-    $.ajax({
-      type: "POST",
-      dataType: 'json',
-      url:"<?php echo site_url('nhanvien/themnv') ;?>",
-      data : dataform,
-      success: function(resp){
-        alert(resp.message);
+    /** conng thuc de truyen mang va du lieu cung file qua
+        * ngan chan su kien submit mac dinh
+        * khai bao mot bien formdata -> kieu object thuc hien qua trinh quyen du lieu
+        * sirializeArray pass cac input trong form qua
+        * day du lieu trong array sizize qua bang cach add no vao data form
+    **/
+     e.preventDefault();
+    if(checkValiate() != false)
+    {
+   
+       var fd = new FormData();    
+      fd.append( 'file', $( '#imgSach2' )[0].files[0]  );
+
+      var other_data = $('#frmThemNV').serializeArray();
+        $.each(other_data,function(key,input){
+            fd.append(input.name,input.value);
+        });
+        console.log( $( '#imgSach2' )[0].files[0] );
+        $.ajax({
+          type: "POST",
+          processData: false,
+          contentType: false,
+          url:"<?php echo site_url('nhanvien/themnv') ;?>",
+          data : fd,
+          success: function(resp){
+            alert(resp.message);
 
 
-        setTimeout(window.location.reload());
-      },
-   error: function(resp) { //alert(JSON.stringify(resp));
-      console.log(resp.message);}
-  });
-    return false;    
+            //setTimeout(window.location.reload());
+          },
+       error: function(resp) { //alert(JSON.stringify(resp));
+          console.log(resp.message);}
+      });
+      
 
-
+}
   });
 
 
@@ -415,7 +425,8 @@ $("#imgSach2").change(function(){
 // ./REVIEW IMG
 
 //  VALIDATE FORM NHẬP SÁCH
-$('#btnThemNV2').click(function () {
+function checkValiate()
+{
 
     // Get the Login Name value and trim it
 
@@ -443,7 +454,7 @@ $('#btnThemNV2').click(function () {
   }
 
 
-});
+}
 
 // datepicker
 $(function()

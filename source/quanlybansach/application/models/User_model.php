@@ -2,7 +2,7 @@
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 class User_model extends CI_MODEL {
-  public  $table = 'taikhoan';
+  public  $table = 'nhanvien';
   function __construct() {
    parent::__construct();
    $this->load->database();
@@ -11,8 +11,8 @@ class User_model extends CI_MODEL {
  		//them dieu kien kiem tra email va password
   
   $this->db->where('email',$email);
-  $this->db->where('password',$password);
-  $query= $this->db->get('taikhoan');
+  $this->db->where('matkhau',$password);
+  $query= $this->db->get('nhanvien');
   if($query->num_rows() == 1)
   {
    
@@ -44,11 +44,13 @@ class User_model extends CI_MODEL {
     public function add_user()
     {
       $data=array(
-        'username'=>$this->input->post('name'),
-        'email'=>$this->input->post('email'),
-        'password'=>md5($this->input->post('password'))
+        'tennv'=> $this->input->post('name'),
+        'email'=> $this->input->post('email'),
+        'matkhau'=> md5($this->input->post('password')),
+         'chucvu'=>1,
+         'ngaytao'=> date('Y-m-d H:i:s'),
         );
-      $this->db->insert('taikhoan',$data);
+      $this->db->insert('nhanvien',$data);
     }
   /*
  * Kiểm tra email đã tồn tại hay chưa
