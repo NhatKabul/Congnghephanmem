@@ -115,7 +115,9 @@ class Nhanvien extends CI_Controller
 	public function themnv()
 	{
 		header('Content-Type: application/json');
-		print_r($this->input->post('selTTTK2'));
+		 $name =time().$_FILES['file']['name'];
+          	  $path='public/web/images/';
+          	  $tmp_name = $_FILES['file']['tmp_name'];
 		$dataNV=array(
 
 		    //"manv" => 1001,
@@ -125,9 +127,11 @@ class Nhanvien extends CI_Controller
 			"diachi"=> $this->input->post('txtDiaChi2'),	
 			"ngaysinh"=>$this->input->post('txtNgaySinh2'),
 			"chucvu"=>$this->input->post('selChucVu2'),
-			//"gioitinh"=>$this->input->post('selGioiTinh2'),
-			 "tinhtrangtk"=>$this->input->post('selTTTK2')
-			
+			"hinhanh"=>  $name,
+			"gioitinh" =>$this->input->post('selGioiTinh2'),
+			"tinhtrangtk"=>$this->input->post('selTTTK2'),
+			"matkhau"=> md5('123456'),
+			"ngaytao"=>date('Y-m-d H:i:s'),
 			);
 
 		$effect=$this->Nhanvien_model->insertNV($dataNV);
@@ -135,17 +139,15 @@ class Nhanvien extends CI_Controller
 		if($effect==1)
 		{
 			/*neu thanh cong tien hanh upload image */
-			 $name =time().$_FILES['file']['name'];
-			  print_r($name);
-          	  $path=base_url().'public/web/images/'.$name;
-          	  print_r($path);
-          	  if(move_uploaded_file($_FILES['file']['tmp_name'],$path))
+			
+          	if(@move_uploaded_file($tmp_name,$path.$name))
           	   {
-          	   	echo 'thanh cong';
+          	   
           	   }
+
 			$data = array(
 				"status"=>"1",
-				"message"=>"Thành công "
+				"message"=>"Thêm nhân viên viên Thành công "
 				);
 			echo json_encode($data);
 		}
@@ -154,7 +156,7 @@ class Nhanvien extends CI_Controller
 			
 			$data = array(
 				"status"=>"1",
-				"message"=>"Thất bại"
+				"message"=>" thêm nhân viên thất bại Thất bại"
 				);
 			echo json_encode($data);
 		}	
