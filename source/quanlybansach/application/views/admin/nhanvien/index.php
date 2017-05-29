@@ -370,10 +370,13 @@
           url:"<?php echo site_url('nhanvien/themnv') ;?>",
           data : fd,
           success: function(resp){
-            alert(resp.message);
-
-
-            //setTimeout(window.location.reload());
+      if(resp.status == 1)
+      {
+        console.log(resp);
+     $("#message").text(resp.message);
+       setTimeout(window.location.reload(), 2000);
+      }
+        $("#message").text(resp.message);
           },
        error: function(resp) { //alert(JSON.stringify(resp));
           console.log(resp.message);}
@@ -382,25 +385,6 @@
 
 }
   });
-
-
-
-     //  $.ajax({
-     //    type: "POST",
-     //    dataType: 'json',
-     //    url:"<?php //echo site_url('sach/themsach') ;?>",
-     //    // data : {
-     //    //   id:$(this).data('id')
-     //    // },
-     //    success: function(resp){
-     //      alert("Xóa sách thành công");
-     //      //alert(resp.message);
-     //     // console.log(resp.message);
-     //     setTimeout(window.location.reload());
-     //   },
-     //   error: function(resp) { alert(JSON.stringify(resp)); }
-     // });
-    // return false;
 
 
 

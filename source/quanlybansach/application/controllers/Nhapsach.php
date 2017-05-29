@@ -14,7 +14,7 @@ class Nhapsach extends CI_Controller
 	{
 	   $data['data_info'] = $this->Nhapsach_model->get_AllSach();
 	   $data['subview'] ='admin/nhapsach/index';
-       $data['title'] = 'Nhap sach';
+       $data['title'] = 'nhập sách';
        $this->load->view('admin/layout', $data);
 	}
 }
