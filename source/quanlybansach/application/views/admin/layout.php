@@ -22,20 +22,21 @@
   <!-- iCheck -->
   <link rel="stylesheet" href="<?php echo base_url().'public/'; ?>plugins/iCheck/flat/blue.css">
   <!-- Morris chart -->
-  <link rel="stylesheet" href="<?php echo base_url().'public/'; ?>plugins/morris/morris.css"> 
+  <!>--<link rel="stylesheet" href="<?php echo base_url().'public/'; ?>plugins/morris/morris.css"> 
   <!-- jvectormap -->
   <link rel="stylesheet" href="<?php echo base_url().'public/'; ?>plugins/jvectormap/jquery-jvectormap-1.2.2.css">
   <!-- Date Picker -->
   <link rel="stylesheet" href="<?php echo base_url().'public/'; ?>plugins/datepicker/datepicker3.css">
   <!-- Daterange picker -->
-  <link rel="stylesheet" href="<?php echo base_url().'public/'; ?>plugins/daterangepicker/daterangepicker.css">
+ <!-- <link rel="stylesheet" href="<?php echo base_url().'public/'; ?>plugins/daterangepicker/daterangepicker.css"> -->
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="<?php echo base_url().'public/'; ?>plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 <script src="<?php echo base_url().'public/'; ?>web/custom.js"></script> 
   <link rel="stylesheet" href="<?php echo base_url().'public/'; ?>web/custom.css">
+<!--
 <script src="<?php echo base_url().'public/'; ?>plugins/morris/morris.min.js"></script> 
-
-
+<script src="<?php echo base_url().'public/'; ?>dist/js/pages/dashboard.js"></script>
+-->
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -45,41 +46,34 @@
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
-
   <?php $this->load->view('layouts/header'); ?>
    <?php $this->load->view('layouts/nav'); ?>
       <!-- /.search form -->
-      <!-- sidebar menu: : style can be found in sidebar.less -->
-      
+      <!-- sidebar menu: : style can be found in sidebar.less -->   
   <!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-->
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>
+      <h3 style="text-transform: uppercase;">
         <?php echo $title; ?>
-   
-      </h1>
+      </h3>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active"><?php echo $title;	 ?></li>
+        <li><a href="<?php echo base_url(); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active"><a href="<?php echo base_url(); ?>">
+        <?php echo $title; ?></a></li>
       </ol>
     </section>
-
     <!-- Main content -->
 	 <?php $this->load->view($subview); ?>
     <!-- /.content -->
   </div>
     <!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX content-->
   <!-- /.content-wrapper -->
-  
- <?php $this->load->view('layouts/footer'); ?>
-
-</div>
+  <?php $this->load->view('layouts/footer'); ?>
+  </div>
 <!-- ./wrapper -->
-
 <!-- jQuery 2.2.3 -->
-
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
   $.widget.bridge('uibutton', $.ui.button);
@@ -110,7 +104,7 @@
 <!-- AdminLTE App -->
 <script src="<?php echo base_url().'public/'; ?>dist/js/app.min.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="<?php echo base_url().'public/'; ?>dist/js/pages/dashboard.js"></script>
+
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url().'public/'; ?>dist/js/demo.js"></script>
 </body>

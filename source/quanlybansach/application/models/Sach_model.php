@@ -15,7 +15,9 @@ class Sach_model extends CI_Model
 	{
 		
 			$this->db->select("*");//lấy tất cả trường dữ liệu trong bảng
-			$query=$this->db->get('sach');// lấy trong bảng sách
+		     $this->db->from('sach');// lấy trong bảng sách
+			$this->db->join('theloai', 'sach.theloai = theloai.matl');
+			$query = $this->db->get();
 			return $result = $query->result_array();// lấy danh sách
 
 		}
@@ -53,7 +55,9 @@ class Sach_model extends CI_Model
 		{
 			$this->db->select("*");//lấy tất cả trường dữ liệu trong bảng
 			$this->db->limit($limit, $start);
-			$query = $this->db->get("sach");
+			$this->db->from('sach');// lấy trong bảng sách
+			$this->db->join('theloai', 'sach.theloai = theloai.matl');
+			$query = $this->db->get();
 			return $query->result_array();
 		}
 		public function record_count()
@@ -71,18 +75,6 @@ class Sach_model extends CI_Model
 				return 1;
 			return 0;
 		}
-
-
-
-		// public function insert($maSach, $data)
-		// {
-		// 	$this->db->where('masach', $maSach);
-		// 	$this->db->update('sach', $data);
-		// 	$afftectedRows=$this->db->affected_rows();
-		// 	if($afftectedRows >0)
-		// 		return 1;
-		// 	return 0;
-		// }
 
 	}
 	?>	
