@@ -8,6 +8,11 @@ $(document ).ready(function() {
         $('.search-panel span#search_concept').text(concept);
         $('.input-group #search_param').val(param);
 });
+
+  /*check all */
+  $('#chkCheckAll').click(function () {    
+     $('input:checkbox').prop('checked', this.checked);    
+ });
 });
 /*
     $(".chitietsach").click(function(){

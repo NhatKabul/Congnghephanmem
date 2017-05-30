@@ -86,8 +86,8 @@
               </td>
               <td> <?php echo $value['masach']; ?></td>
               <td><?php echo $value['tensach']; ?></td>
-              <td><?php echo $value['tentl']; ?></td>
-              <td><?php echo $value['soluong']; ?></td>
+              <td><?php echo $value['tentheloai']; ?></td>
+              <td><?php echo $value['soluongton']; ?></td>
               <td><?php echo $value['giaban']; ?></td>
               <td><?php
                if($value['status']==1){ 

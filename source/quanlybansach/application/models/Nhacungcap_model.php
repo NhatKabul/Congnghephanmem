@@ -25,7 +25,7 @@ class Nhacungcap_model extends CI_Model
 		public function get_All_NCC()
 		{
 			$this->db->select("*");//lấy tất cả trường dữ liệu trong bảng
-			$query=$this->db->get("nhacc");// lấy trong bảng sách
+			$query=$this->db->get("nhacungcap");// lấy trong bảng sách
 			return $result = $query->result_array();// lấy danh sách
 
 		}
@@ -53,12 +53,12 @@ class Nhacungcap_model extends CI_Model
 		{
 			$this->db->select("*");//lấy tất cả trường dữ liệu trong bảng
 			$this->db->limit($limit, $start);
-			$query = $this->db->get("nhacc");
+			$query = $this->db->get("nhacungcap");
 			return $query->result_array();
 		}
 		public function record_count()
 		{
-			return $this->db->count_all("nhacc");
+			return $this->db->count_all("nhacungcap");
 		}
 
 

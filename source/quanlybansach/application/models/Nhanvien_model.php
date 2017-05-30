@@ -83,15 +83,64 @@ class Nhanvien_model extends CI_Model
 			return 0;
 		}
 
-		// public function insert($maSach, $data)
-		// {
-		// 	$this->db->where('masach', $maSach);
-		// 	$this->db->update('sach', $data);
-		// 	$afftectedRows=$this->db->affected_rows();
-		// 	if($afftectedRows >0)
-		// 		return 1;
-		// 	return 0;
-		// }
+		public function login($email, $password) {
+ 		//them dieu kien kiem tra email va password
 
-	}
-	?>	
+			$this->db->where('email',$email);
+			$this->db->where('matkhau',$password);
+			$query= $this->db->get('nhanvien');
+			if($query->num_rows() == 1)
+			{
+
+				$row = $query->row();
+				$userdata = array(
+					'email'=>  $row->email,
+					'id' =>   $row->id,
+					'username' => $row->username,
+					'logged_in' =>  TRUE 
+					);
+				$this->session->set_userdata('userdata',$userdata); 
+				return true;
+
+			}
+			return false;
+		}
+
+    /*
+     * lay thong tin thanh vien
+     */
+    public function get_user_info($where = array())
+    {
+        //tao dieu kien cho cau truy van
+    	$this->db->where($where);
+    	$result = $this->db->get($this->table);
+    	return $result->row();
+    }
+    
+    public function add_user()
+    {
+    	$data=array(
+    		'tennhanvien'=> $this->input->post('name'),
+    		'email'=> $this->input->post('email'),
+    		'matkhau'=> md5($this->input->post('password')),
+    		'chucvu'=>1,
+    		'ngaytao'=> date('Y-m-d H:i:s'),
+    		);
+    	$this->db->insert('nhanvien',$data);
+    }
+  /*
+ * Kiểm tra email đã tồn tại hay chưa
+ */
+  public function check_exists($where) {
+  	$this->db->where($where);
+        //thuc hien cau truy van
+  	$query = $this->db->get($this->table);
+  	if($query->num_rows() > 0)
+  	{
+  		return true;
+  	}
+  	return false;
+  }
+
+}
+?>	

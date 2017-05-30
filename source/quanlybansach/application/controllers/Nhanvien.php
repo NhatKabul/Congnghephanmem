@@ -115,9 +115,9 @@ class Nhanvien extends CI_Controller
 	public function themnv()
 	{
 		header('Content-Type: application/json');
-		 $name =time().$_FILES['file']['name'];
-          	  $path='public/web/images/';
-          	  $tmp_name = $_FILES['file']['tmp_name'];
+		$name =time().$_FILES['file']['name'];
+		$path='public/web/images/';
+		$tmp_name = $_FILES['file']['tmp_name'];
 		$dataNV=array(
 
 		    //"manv" => 1001,
@@ -140,10 +140,10 @@ class Nhanvien extends CI_Controller
 		{
 			/*neu thanh cong tien hanh upload image */
 			
-          	if(@move_uploaded_file($tmp_name,$path.$name))
-          	   {
-          	   
-          	   }
+			if(@move_uploaded_file($tmp_name,$path.$name))
+			{
+
+			}
 
 			$data = array(
 				"status"=>"1",
@@ -160,6 +160,90 @@ class Nhanvien extends CI_Controller
 				);
 			echo json_encode($data);
 		}	
+	}
+	public function dangnhap() {
+		$data = array();
+		$this->form_validation->set_rules('email', 'Your Email', 'trim|required|valid_email');
+		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[4]|max_length[32]');
+		if($this->form_validation->run() == FALSE) {
+			$this->load->view('admin/nhanvien/dangnhap', $data);
+		} else 
+		{
+			$username = $this->input->post('email');
+			$password = md5($this->input->post('password'));
+
+			if($this->Nhanvien_model->login($username, $password))
+			{
+				$this->session->set_flashdata('success', 'Đăng nhập thành công');
+				redirect('nhanvien');
+			}
+			else
+			{
+				$this->load->view('admin/nhanvien/dangnhap', $data);
+			}
+		}
+
+
+	}
+
+	public function dangky() {
+
+		$data = array();
+		$this->form_validation->set_rules('name', 'User Name', 'trim|required|min_length[4]|xss_clean');
+		$this->form_validation->set_rules('email', 'Your Email', 'trim|required|valid_email');
+		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[4]|max_length[32]');
+		$this->form_validation->set_rules('re_password', 'Password Confirmation', 'trim|required|matches[password]');
+		$this->form_validation->set_rules('check', '<div class=""></div>', 'callback__acept_term');
+			print_r($this->form_validation->run());
+		if($this->form_validation->run() == FALSE)
+		{
+
+			$this->load->view('admin/nhanvien/dangky', $data);  
+		}
+		else
+		{
+			$this->Nhanvien_model->add_user();
+			$this->index();
+		}
+
+	}
+	function check_email()
+	{
+
+		$email = $this->input->post('email');
+		$where = array();
+		$where['email'] = $email;
+    //kiểm tra điều kiện email có tồn tại trong csdl hay không
+		if($this->Nhanvien_model->check_exists($where))
+		{
+         //trả về thông báo lỗi nếu đã tồn tại email này
+			$this->form_validation->set_message(__FUNCTION__, 'Email đã sử dụng');
+			return FALSE;
+		}
+		return TRUE;
+
+	}
+	function _acept_term($str){
+		if ($str === '1'){ 
+			return TRUE;
+		}
+		$this->form_validation->set_message('_acept_term', 'Agree to the terms');
+		return FALSE;
+	}
+	public function logout() {
+		$this->session->sess_destroy();
+		redirect('nhanvien/login');
+	}
+	/* lay thong tin chi tiet user */
+	public function info($id =null) {
+		if($id != '') {
+
+			/*lay thong tin chi tiet cua user */
+			$where = array('id' => $id);
+			$userinfo = $this->Nhanvien_model->get_user_info($where);
+			var_dump($userinfo);
+		}
+
 	}
 
 }

@@ -41,7 +41,7 @@
             $stt =0;
             foreach ($data_info as $key => $value) {
               $stt++;
-              $masach = $value['manv'];
+              $masach = $value['manhanvien'];
               ?>
               <tr>
                <td>
@@ -49,8 +49,8 @@
                   <?php echo $stt; ?>
                 </div>
               </td>
-              <td> <?php echo $value['manv']; ?></td>
-              <td><?php echo $value['tennv']; ?></td>
+              <td> <?php echo $value['manhanvien']; ?></td>
+              <td><?php echo $value['tennhanvien']; ?></td>
                <td><?php echo $value['email']; ?></td>
               <td><a class='chitietsach' href='' data-id='<?php echo $masach ;?>' data-toggle='modal' data-target='#myModal'><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
               <td><a class='xoasach' href='' data-id='<?php echo $masach ;?>' ><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>

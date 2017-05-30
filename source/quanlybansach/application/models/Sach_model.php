@@ -16,7 +16,7 @@ class Sach_model extends CI_Model
 		
 			$this->db->select("*");//lấy tất cả trường dữ liệu trong bảng
 		     $this->db->from('sach');// lấy trong bảng sách
-			$this->db->join('theloai', 'sach.theloai = theloai.matl');
+			$this->db->join('theloai', 'sach.theloai = theloai.matheloai');
 			$query = $this->db->get();
 			return $result = $query->result_array();// lấy danh sách
 
@@ -64,7 +64,7 @@ class Sach_model extends CI_Model
 			$this->db->select("*");//lấy tất cả trường dữ liệu trong bảng
 			$this->db->limit($limit, $start);
 			$this->db->from('sach');// lấy trong bảng sách
-			$this->db->join('theloai', 'sach.theloai = theloai.matl');
+			$this->db->join('theloai', 'sach.theloai = theloai.matheloai');
 			$query = $this->db->get();
 			return $query->result_array();
 		}

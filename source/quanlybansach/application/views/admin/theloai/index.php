@@ -38,7 +38,7 @@
 							$stt =0;
 							foreach ($data_info as $key => $value) {
 								$stt++;
-								$matl = $value['matl'];
+								$matl = $value['matheloai'];
 								?>
 								<tr>
 									<td>
@@ -46,8 +46,8 @@
 											<?php echo $stt; ?>
 										</div>
 									</td>
-									<td> <?php echo $value['matl']; ?></td>
-									<td><?php echo $value['tentl']; ?></td>
+									<td> <?php echo $value['matheloai']; ?></td>
+									<td><?php echo $value['tentheloai']; ?></td>
 									<td><a class='chitietsach' href='' data-id='<?php echo $matl ;?>' data-toggle='modal' data-target='#myModal'>Sửa</a></td>
 									<td><a class='xoasach' href='' data-id='<?php echo $matl ;?>' >Xóa</a></td>
 								</tr>

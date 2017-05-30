@@ -43,7 +43,7 @@
             $stt =0;
             foreach ($data_info as $key => $value) {
               $stt++;
-              $mancc = $value['mancc'];
+              $mancc = $value['manhacungcap'];
               ?>
               <tr>
                <td>
@@ -51,8 +51,8 @@
                   <?php echo $stt; ?>
                 </div>
               </td>
-              <td> <?php echo $value['mancc']; ?></td>
-              <td><?php echo $value['tenncc']; ?></td>
+              <td> <?php echo $value['manhacungcap']; ?></td>
+              <td><?php echo $value['tennhacungcap']; ?></td>
               <td><?php echo $value['sdt']; ?></td>
               <td><?php echo $value['diachi']; ?></td>
               <td><?php echo $value['email']; ?></td>

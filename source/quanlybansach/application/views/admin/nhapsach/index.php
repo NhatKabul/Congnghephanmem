@@ -26,7 +26,7 @@
                   <select class="form-control" id="txtMaNCC" placeholder="Mã nhà cung cấp" >
                    <option>chọn mã nhà cung cấp</option>
                    <?php foreach ($data_nhacc as $key => $value) { ?>
-                   <option value="<?php echo $value['mancc']; ?>"><?php echo $value['tenncc'];?>   </option>
+                   <option value="<?php echo $value['manhacungcap']; ?>"><?php echo $value['tennhacungcap'];?>   </option>
 
                  <?php  } ?>
                 </select>

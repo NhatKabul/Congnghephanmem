@@ -23,67 +23,57 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
-  <style type="text/css">
-    .error {color:red;}
-  </style>
 </head>
-<body class="hold-transition register-page">
- <?php echo validation_errors('<p class="error">'); ?>
-<div class="register-box">
-  <div class="register-logo">
-    <a href="../../index2.html"><b>QLBS</b>LazyTeam</a>
+<body class="hold-transition login-page">
+<div class="login-box">
+  <div class="login-logo">
+    <a href="#"><b>QLBS |</b> Đăng nhập</a>
   </div>
+  <!-- /.login-logo -->
+  <div class="login-box-body">
+    <p class="login-box-msg">Sign in to start your session </p>
 
-  <div class="register-box-body">
-    <p class="login-box-msg">Đăng ký thành viên</p>
-
-    <?php echo form_open('user/register'); ?>
+     <?php echo form_open('nhanvien/dangnhap'); ?>
       <div class="form-group has-feedback">
-        <input type="text" name= "name" class="form-control" placeholder="Full name" value="<?php echo set_value('name'); ?>">
-        <span class="glyphicon glyphicon-user form-control-feedback"></span>
-      </div>
-      <div class="form-group has-feedback">
-        <input type="email" name='email' class="form-control" placeholder="Email" value="<?php echo set_value('email'); ?>">
+        <input type="email" name='email' class="form-control" placeholder="Email">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="password" name="password" class="form-control" placeholder="Password" value="<?php echo set_value('password')?>">
+        <input type="password" name="password" class="form-control" placeholder="Password">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-      </div>
-      <div class="form-group has-feedback">
-        <input type="password" name="re_password" class="form-control" placeholder="Retype password" value="<?php echo set_value('re_password'); ?>">
-        <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
       </div>
       <div class="row">
         <div class="col-xs-8">
           <div class="checkbox icheck">
             <label>
-              <input type="checkbox" name="check" value="1"  >  I agree to the <a href="#">terms</a>
+              <input type="checkbox"> Remember Me
             </label>
           </div>
         </div>
         <!-- /.col -->
         <div class="col-xs-4">
-          <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
+          <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
         </div>
         <!-- /.col -->
       </div>
-     <?php echo form_close(); ?>
+ <?php echo form_close(); ?>
 
     <div class="social-auth-links text-center">
       <p>- OR -</p>
-      <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign up using
+      <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using
         Facebook</a>
-      <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign up using
+      <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in using
         Google+</a>
     </div>
+    <!-- /.social-auth-links -->
 
-    <a href="login.html" class="text-center">I already have a membership</a>
+    <a href="#">I forgot my password</a><br>
+    <a href="<?php echo base_url('nhanvien/dangky') ?>" class="text-center">Register a new membership</a>
+
   </div>
-  <!-- /.form-box -->
+  <!-- /.login-box-body -->
 </div>
-<!-- /.register-box -->
-
+<!-- /.login-box -->
 
 <!-- jQuery 2.2.3 -->
 <script src="<?php echo base_url().'public/'; ?>/plugins/jQuery/jquery-2.2.3.min.js"></script>

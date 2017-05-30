@@ -83,7 +83,7 @@ class Sach extends CI_Controller
 			"masach" => $this->input->post('txtMaSach'),
 			"tensach" => $this->input->post('txtTenSach'),
 			"giaban"=> $this->input->post('txtGiaBan'),
-			"soluong" => $this->input->post('txtSoLuong'),
+			"soluongton" => $this->input->post('txtSoLuong'),
 			"ngaynhap" => $this->input->post('txtNgayNhap'),
 			"tacgia" => $this->input->post('txtTacGia'),
 			"mancc" => $this->input->post('txtNCC'),
