@@ -48,7 +48,7 @@ class Sach extends CI_Controller
 	 	//$data['data_info'] = $this->Sach_model->get_AllSach();
 		$data['subview'] ='admin/book/index';
 		$data['title'] = 'Quản lý sách';
-		$data['data_info_status_0']=$this->Sach_model->get_Sach_By_Status(0);
+		//$data['data_info_status_0']=$this->Sach_model->get_Sach_By_Status(0);
 		$this->load->view('admin/layout', $data);
 
 

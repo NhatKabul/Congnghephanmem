@@ -3,18 +3,46 @@
   <!-- Default panel contents -->
   <div class="panel-heading">
     <div class="row">
-     <div class="col-md-10 col-sm-10 col-xs-7">
-       <label>
-         QUẢN LÝ SÁCH
-       </label>
+    <div class="col-md-12">
+        <div class="alert alert-success alert-dismissable fade in">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Success!</strong> This alert box could indicate a successful or positive action.
+  </div>
+    </div>
+     <div class="col-md-8 col-sm-6 col-xs-7">
+         <div class="input-group">
+                <div class="input-group-btn search-panel">
+                    <button type="button"  class="btn btn-default dropdown-toggle btnfilter" data-toggle="dropdown">
+                      <span id="search_concept">Filter by</span> <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="#contains">Contains</a></li>
+                      <li><a href="#its_equal">It's equal</a></li>
+                      <li><a href="#greather_than">Greather than ></a></li>
+                      <li><a href="#less_than">Less than < </a></li>
+                      <li class="divider"></li>
+                      <li><a href="#all">Anything</a></li>
+                    </ul>
+                </div>
+                <input type="hidden" name="search_param" value="all" id="search_param">         
+                <input type="text" class="form-control" name="x" placeholder="Search term...">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                </span>
+            </div>
      </div>
-     <div class="col-md-2 col-sm-2 col-xs-5">
+     <div class="col-md-4 col-sm-6 col-xs-5">
+     <div class="btn-group">
        <button type="button" class="btn btn-success" id="btnThemSach"  data-toggle="modal" data-target="#modalThemSach">
-        <span class="glyphicon glyphicon-plus-sign"></span> Thêm sách
+        <span class="glyphicon glyphicon-plus-sign"></span> THÊM
       </button>
-
-
-
+      <button type="button" class="btn btn-danger" id="btnThemSach"  data-toggle="modal" data-target="#modalThemSach">
+        <span class="glyphicon glyphicon-trash"></span> XÓA
+      </button>
+      <button type="button" class="btn btn-info" id="btnThemSach"  data-toggle="modal" data-target="#modalThemSach">
+        <span class="glyphicon glyphicon-save-file"></span> EXPORT EXCEL
+      </button>
+      </div>
     </div>
   </div>
 </div>
@@ -30,12 +58,14 @@
                   <input id="chkCheckAll" type="checkbox" value="">
                 </div>
               </th>
-
+              <th>STT</th>
               <th>Mã Sách</th>
               <th>Tên Sách</th>
-
-              <th>Sửa</th>
-              <th>Xóa</th>
+              <th>Thể loại</th>
+              <th>Số lượng tồn</th>
+              <th>Giá bán</th>
+              <th>tình trạng</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -46,24 +76,37 @@
               $masach = $value['masach'];
               ?>
               <tr>
+              <td class="text-center">
+                <input id="chkitem[]" type="checkbox" value="<?php echo $masach; ?>">
+              </td>
                <td>
-                 <div class='text-center'>
+                 
                   <?php echo $stt; ?>
-                </div>
+                
               </td>
               <td> <?php echo $value['masach']; ?></td>
               <td><?php echo $value['tensach']; ?></td>
-              <td><a class='chitietsach' href='' data-id='<?php echo $masach ;?>' data-toggle='modal' data-target='#myModal'>Sửa</a></td>
-              <td><a class='xoasach' href='' data-id='<?php echo $masach ;?>' >Xóa</a></td>
+              <td><?php echo $value['tentl']; ?></td>
+              <td><?php echo $value['soluong']; ?></td>
+              <td><?php echo $value['giaban']; ?></td>
+              <td><?php
+               if($value['status']==1){ 
+                echo '<span class="label label-success">còn bán</span>';
+                }
+                 else echo '<span class="label label-warning">hết bán</span>';
+                  ?>
+                   
+                 </td>
+              <td><a class='xoasach' href='' data-id='<?php echo $masach ;?>' ><i class="glyphicon glyphicon-trash" style="color: red"></i></a><span style="padding: 10px">|</span><a class='chitietsach' href='' data-id='<?php echo $masach ;?>' data-toggle='modal' data-target='#myModal'><i class="glyphicon glyphicon-edit" style="color: green"></i></a></td>
             </tr>
             <?php }?>
-            <tr>
-              <td style="text-align: center;" colspan="5"><?php echo $links; ?></td>
-            </tr>
-          </tbody>
+                     </tbody>
+
         </table>
+        <div class="col-md-offset-6 col-md-6"><?php echo $links; ?></div>
       </div>
     </div>
+    
   </div>
 </div>
 </div>
@@ -250,13 +293,13 @@
  <div class="row">
  </div>
 </div>
- <!-- ./MODAL THÊM SÁCH  -->
+<!-- ./MODAL THÊM SÁCH  -->
 
 
 
 
 
- <script>
+<script>
   $(".chitietsach").click(function(){
     console.log($(this).data('id'));
     $.ajax({
