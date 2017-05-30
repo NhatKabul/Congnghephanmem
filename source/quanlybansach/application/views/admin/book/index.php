@@ -36,7 +36,7 @@
        <button type="button" class="btn btn-success" id="btnThemSach"  data-toggle="modal" data-target="#modalThemSach">
         <span class="glyphicon glyphicon-plus-sign"></span> THÊM
       </button>
-      <button type="button" class="btn btn-danger" id="btnThemSach"  data-toggle="modal" data-target="#modalThemSach">
+      <button type="button" class="btn btn-danger" id="btnxoasach">
         <span class="glyphicon glyphicon-trash"></span> XÓA
       </button>
       <button type="button" class="btn btn-info" id="btnThemSach"  data-toggle="modal" data-target="#modalThemSach">
@@ -55,7 +55,7 @@
             <tr>
               <th>
                 <div class="text-center">
-                  <input id="chkCheckAll" type="checkbox" value="">
+                  <input id="chkCheckAll" type="checkbox" value=""/>
                 </div>
               </th>
               <th>STT</th>
@@ -77,7 +77,7 @@
               ?>
               <tr>
               <td class="text-center">
-                <input id="chkitem[]" type="checkbox" value="<?php echo $masach; ?>">
+               <input class="checkitem" type="checkbox" name="checkitem[]" value=""/>
               </td>
                <td>
                  

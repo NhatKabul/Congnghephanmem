@@ -13,6 +13,9 @@ $(document ).ready(function() {
   $('#chkCheckAll').click(function () {    
      $('input:checkbox').prop('checked', this.checked);    
  });
+  $('#btnxoasach').click(function(){
+    alert('hihi');
+  });
 });
 /*
     $(".chitietsach").click(function(){
