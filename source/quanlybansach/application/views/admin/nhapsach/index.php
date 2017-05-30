@@ -18,16 +18,31 @@
     </div>
     <div class="panel-body" style="max-height: 800;">
         <form action="#" method="post" class="form-horizontal" id="frm-hang-hoa">
-            <div class="header"><label>Thông tin đơn hàng:</label></div>
+            <div class="header"></div>
             <div class="form-content">
                 <div class="form-group">
-                    <div class="col-sm-5"> <input class="form-control" id="txtMaNCC" placeholder="Mã nhà cung cấp" type="text"> <label class="control-label" for="exampleInputName2"></label>
+                    <div class="col-sm-5">
+
+                  <select class="form-control" id="txtMaNCC" placeholder="Mã nhà cung cấp" >
+                   <option>chọn mã nhà cung cấp</option>
+                   <?php foreach ($data_nhacc as $key => $value) { ?>
+                   <option value="<?php echo $value['mancc']; ?>"><?php echo $value['tenncc'];?>   </option>
+
+                 <?php  } ?>
+                </select>
+                  
+
                     </div>
-                    <div class="col-sm-5"> <input class="form-control" id="txtTenNCC" placeholder="Tên nhà cung cấp" type="text"> <label class="control-label" for="exampleInputName2"></label>
+                    <div class="col-sm-5"><input class="form-control" id="txtTenNCC" placeholder="Tên nhà cung cấp" type="text" readonly=""> <label class="control-label" for="exampleInputName2"  ></label>
                     </div>
-                </div>
+                    </div>
                 <div class="form-group">
-                    <div class="col-sm-3"> <input class="form-control" id="txtMaSach" placeholder="Mã Sách" type="text"> <label class="control-label" for="exampleInputName2"></label>
+                    <div class="col-sm-3"> <select class="form-control" id="txtMaSach" placeholder="Mã Sách" type="text" disabled="true">
+                     <label class="control-label" for="exampleInputName2"  >
+                        
+                    </label>
+                    <option value="">chọn mã sách</option>
+                    </select>
                     </div>
                     <div class="col-sm-4"> <input class="form-control" id="txtTenSach" placeholder="Tên Sách" type="text"> <label class="control-label" for="exampleInputName2"></label>
                     </div>
@@ -183,3 +198,38 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+     $('#txtMaNCC').on('change', function() {   
+        alert(this.value);
+    var tennc = $("#txtMaNCC").find("option:selected").text();
+        if(tennc !='')
+        {
+            $('#txtTenNCC').val(tennc);
+            $('#txtMaSach').prop("disabled", false); 
+            /*tien hanh get tat  cac ma sach do vao select box; */;
+              $.ajax({
+                  type: "POST",
+                  dataType: 'json',
+                  url:"<?php echo site_url('sach/chitietbynhacc') ;?>",
+                  data : {
+                    id:this.value
+                  },
+                  success: function(resp){
+                     // alert("vv");
+                    // console.log(resp);
+                    $("#txtMaSach option[value!='']").remove();
+                      $.each(resp.data_info, function(i, item) {
+                           
+                        $('#txtMaSach').append($('<option>', { 
+                                value: item.masach,
+                                text : item.tensach 
+                        }));
+                     });
+                    console.log(resp);
+                  },
+                  error: function(resp) { alert(JSON.stringify(resp)); }
+                });
+
+        }
+     });
+    </script>

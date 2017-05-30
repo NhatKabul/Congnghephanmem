@@ -28,7 +28,15 @@ class Sach_model extends CI_Model
 			return $result = $query->result_array();// lấy danh sách
 
 		}
+		/* get sach voi dieu kien*/
+		public function getSachByMaNCC($mancc)
+		{
+			$this->db->select("*");//lấy tất cả trường dữ liệu trong bảng
+			$this->db->where('mancc', $mancc);
+			$query=$this->db->get("sach");// lấy trong bảng sách
+			return $result = $query->result_array();// lấy danh sách
 
+		}
 		public function get_Sach_By_Status($status)
 		{
 			$this->db->select("*");//lấy tất cả trường dữ liệu trong bảng

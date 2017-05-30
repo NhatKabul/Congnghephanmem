@@ -64,6 +64,16 @@ class Sach extends CI_Controller
 
 	}
 
+	public function chitietbynhacc()
+	{
+		header('Content-Type: application/json');
+		$idmancc= $this->input->post('id');
+		$data['data_info']=$this->Sach_model->getSachByMaNCC($idmancc);
+		echo json_encode($data);
+
+	}
+
+
 	public function capnhat()
 	{
 
