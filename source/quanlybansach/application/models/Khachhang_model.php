@@ -11,11 +11,11 @@ class Khachhang_model extends CI_Model
 		
 	}
 
-	public function get_AllTheLoaiSach()
+	public function get_AllKhachHang()
 	{
 		
 			$this->db->select("*");//lấy tất cả trường dữ liệu trong bảng
-			$query=$this->db->get('theloai');// lấy trong bảng sách
+			$query=$this->db->get('khachhang');// lấy trong bảng sách
 			return $result = $query->result_array();// lấy danh sách
 
 		}

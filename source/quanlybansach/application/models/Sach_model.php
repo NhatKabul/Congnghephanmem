@@ -47,12 +47,21 @@ class Sach_model extends CI_Model
 			return $result = $query->result_array();// lấy danh sách
 
 		}
+
 		
 
 		public function updateSach($maSach, $data)
 		{
 			$this->db->where('masach', $maSach);
 			$this->db->update('sach', $data);
+			$afftectedRows=$this->db->affected_rows();
+			if($afftectedRows >0)
+				return 1;
+			return 0;
+		}
+		public function updateSoLuongton($data)
+		{
+			$this->db->update_batch('sach', $data, 'masach'); 
 			$afftectedRows=$this->db->affected_rows();
 			if($afftectedRows >0)
 				return 1;

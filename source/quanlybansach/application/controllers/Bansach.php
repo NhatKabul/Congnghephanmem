@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Nhapsach extends CI_Controller
+class Bansach extends CI_Controller
 {
 
 	function __construct()
@@ -9,18 +9,20 @@ class Nhapsach extends CI_Controller
 			# code...
 		parent::__construct();
 		$this->load->model('Nhapsach_model');
+		$this->load->model('Bansach_model');
 		$this->load->model('Sach_model');
 		$this->load->model('Nhacungcap_model');
+		$this->load->model('Khachhang_model');
 		$this->load->model('Caidat_model');
 		$this->load->library('session');
 	}
 	public function index()
 	{
 		$data['data_thamso'] = $this->Caidat_model->get_AllCauHinh();
-		$data['data_nhacc'] = $data['data_info'] = $this->Nhacungcap_model->get_All_NCC();
+		$data['data_nhacc'] = $data['data_info'] = $this->Khachhang_model->get_AllKhachHang();
 		$data['data_sach'] = $this->Nhapsach_model->get_AllSach();
-		$data['subview'] ='admin/nhapsach/index';
-		$data['title'] = 'nhập sách';
+		$data['subview'] ='admin/bansach/index';
+		$data['title'] = 'Bán sách';
 		$this->load->view('admin/layout', $data);
 	}
 	public function lapphieunhap()
@@ -41,10 +43,11 @@ class Nhapsach extends CI_Controller
 		}
 		$phieunhap = array(
 			'tongtien' => $tongtien,
-			'manhacungcap'=>$manhacungcap,
+			'makhachhang'=>$manhacungcap,
 			'manhanvien' => $manhanvien
+			
 			);
-		$maphieu= $this->Nhapsach_model->insertphieunhap($phieunhap);
+		$maphieu= $this->Bansach_model->insertphieunhap($phieunhap);
 		$soluongton = $this->Sach_model->getSachByID($id[0]);
 		if($maphieu != 0)
 		{
@@ -52,23 +55,23 @@ class Nhapsach extends CI_Controller
 			$chitietphieunhap = array();
 			$sachupdate = array();
 	   for($i = 0; $i < $length; $i++) {
-			$chitietphieunhap[$i]['maphieunhap'] = $maphieu;
+			$chitietphieunhap[$i]['mahd'] = $maphieu;
 			$chitietphieunhap[$i]['masach'] = $id[$i];
 			$chitietphieunhap[$i]['soluong'] = $soluong[$i];
 			$chitietphieunhap[$i]['thanhtien'] = $thanhtien[$i];
 			$soluongton = $this->Sach_model->getSachByID($id[$i]);
 			$sachupdate[$i]['masach'] = $id[$i];
-			$sachupdate[$i]['soluongton'] = $soluongton[0]['soluongton'] + $soluong[$i];
+			$sachupdate[$i]['soluongton'] = $soluongton[0]['soluongton'] - $soluong[$i];
 		};
 
-			$machitiet=$this->Nhapsach_model->insertChiTietphieunhap($chitietphieunhap);
+			$machitiet=$this->Bansach_model->insertChiTietphieunhap($chitietphieunhap);
 			$update = $this->Sach_model->updateSoLuongton($sachupdate);
 			/*cap nhau so luong ton cua san pham */
 			if($machitiet && $update !=0 )
 			{
 			$data = array(
 				"status"=>"1",
-				'maphieu'=>$maphieu,
+				'mahd'=>$maphieu,
 				"message"=>"Thêm phiếu nhập thành công"
 				);
 			echo json_encode($data);
@@ -78,13 +81,13 @@ class Nhapsach extends CI_Controller
 	public function inphieunhap($id)
 	{
 
-		$data['data_phieunhap'] = $this->Nhapsach_model->get_inphieunhap($id);
-		/* echo '<pre>';
-		print_r($data['data_phieunhap'][0]['tennhacungcap']);
+		$data['data_phieunhap'] = $this->Bansach_model->get_inphieunhap($id);
+	/*	 echo '<pre>';
+		print_r($data['data_phieunhap']);
 		echo '</pre>';
-		die();*/
+		die()*/;
 		//$data['subview'] ='admin/nhapsach/index';
 		$data['title'] = 'nhập sách';
-		$this->load->view('admin/nhapsach/inhoadon', $data);
+		$this->load->view('admin/bansach/inhoadon', $data);
 	}
 }

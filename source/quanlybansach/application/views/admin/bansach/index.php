@@ -26,12 +26,12 @@
       <div class="form-group">
         <div class="col-sm-5">
           <div class="panel panel-info">
-            <div class="panel-heading">Bước 1: chọn nhà cung cấp</div>
+            <div class="panel-heading">Bước 1: chọn khách hàng</div>
             <div class="panel-body">
               <select class="form-control" id="txtMaNCC" placeholder="Mã nhà cung cấp" >
-               <option>chọn mã nhà cung cấp</option>
+               <option>chọn khách hàng</option>
                <?php foreach ($data_nhacc as $key => $value) { ?>
-               <option value="<?php echo $value['manhacungcap']; ?>"><?php echo $value['tennhacungcap'];?>   </option>
+               <option value="<?php echo $value['makhachhang']; ?>"><?php echo $value['tenkhachhang'];?>   </option>
 
                <?php  } ?>
              </select>
@@ -50,13 +50,13 @@
 
 
             <div class="col-sm-6">
-              <label class="control-label" for="">số lượng nhập ít ít nhất</label>
-              <input class="form-control" id="txtsoluongnhapitnhat" placeholder="" type="text" name="txtsoluongnhapitnhat" value="<?php echo $data_thamso[0]['giatri']; ?>" readonly/>
+              <label class="control-label" for="">sô lượng tồn tối thiểu khi bán</label>
+              <input class="form-control" id="txtsoluongnhapitnhat" placeholder="" type="text" name="txtsoluongnhapitnhat" value="<?php echo $data_thamso[2]['giatri']; ?>" readonly/>
               <label class="control-label" for=""></label>
             </div>
             <div class="col-sm-6">
-              <label>số lượng tồn ít nhất</label>
-              <input class="form-control" id="txtsoluongnhaptonitnhat" placeholder="" type="text" name="txtsoluongnhapitnhat" value="<?php echo $data_thamso[0]['giatri']; ?>" readonly/>
+              <label>số nợ tối đa</label>
+              <input class="form-control" id="txtsoluongnhaptonitnhat" placeholder="" type="text" name="txtsoluongnhapitnhat" value="<?php echo $data_thamso[3]['giatri']; ?>" readonly/>
               <label class="control-label" for=""></label>
             </div>
             <div class="col-md-12">
@@ -287,7 +287,7 @@
     $.ajax({
       type: "POST",
       dataType: 'json',
-      url:"<?php echo site_url('nhapsach/lapphieunhap') ;?>",
+      url:"<?php echo site_url('bansach/lapphieunhap') ;?>",
       data : dataform+ '&mancc=' + mancc,
       success: function(resp){
         if(resp.status== 1)
@@ -309,6 +309,6 @@
   });
   $('#btninphieu').click(function(){
     alert(this.value);
-    window.location.href = "<?php echo base_url('nhapsach/inphieunhap/"+this.value+"') ?>";
+    window.location.href = "<?php echo base_url('bansach/inphieunhap/"+this.value+"') ?>";
   });
 </script>

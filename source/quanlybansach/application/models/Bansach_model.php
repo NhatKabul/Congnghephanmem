@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class Nhapsach_model extends CI_Model
+class Bansach_model extends CI_Model
 {
 	public $table ='sach';
 	function __construct()
@@ -73,7 +73,7 @@ class Nhapsach_model extends CI_Model
 		}
 		public function insertphieunhap($data)
 		{
-			$this->db->insert('phieunhap', $data);
+			$this->db->insert('hoadon', $data);
 			$afftectedRows=$this->db->affected_rows();
 			 $insert_id = $this->db->insert_id();
 			if($afftectedRows >0)
@@ -82,7 +82,7 @@ class Nhapsach_model extends CI_Model
 		}
 		public function insertChiTietphieunhap($data)
 		{
-			$this->db->insert_batch('chitietphieunhap', $data);
+			$this->db->insert_batch('chitiethoadon', $data);
 			$afftectedRows=$this->db->affected_rows();
 			if($afftectedRows >0)
 				return 1;
@@ -91,12 +91,12 @@ class Nhapsach_model extends CI_Model
 		public function get_inphieunhap($id)
 		{
 			 $this->db->select("*");//lấy tất cả trường dữ liệu trong bảng
-		     $this->db->from('phieunhap');// lấy trong bảng sách
-		     $this->db->where('phieunhap.maphieunhap', $id);
-		     $this->db->join('chitietphieunhap', 'phieunhap.maphieunhap = chitietphieunhap.maphieunhap');
-		     $this->db->join('nhacungcap', 'phieunhap.manhacungcap = nhacungcap.manhacungcap');
-		      $this->db->join('nhanvien', 'phieunhap.manhanvien = nhanvien.manhanvien');
-		     $this->db->join('sach', 'chitietphieunhap.masach = sach.masach'); 
+		     $this->db->from('hoadon');// lấy trong bảng sách
+		     $this->db->where('hoadon.mahd', $id);
+		     $this->db->join('chitiethoadon', 'hoadon.mahd = chitiethoadon.mahd');
+		     $this->db->join('khachhang', 'hoadon.makhachhang = khachhang.makhachhang');
+		      $this->db->join('nhanvien', 'hoadon.manhanvien = nhanvien.manhanvien');
+		     $this->db->join('sach', 'chitiethoadon.masach = sach.masach'); 
 		     $query = $this->db->get();
 			return $result = $query->result_array();// lấy danh sách	
 
