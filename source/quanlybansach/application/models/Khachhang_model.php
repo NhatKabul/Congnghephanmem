@@ -20,11 +20,11 @@ class Khachhang_model extends CI_Model
 
 		}
 
-		public function getTheLoaiSachByID($maTheLoai)
+		public function getKhachhangByID($maTheLoai)
 		{
 			$this->db->select("*");//lấy tất cả trường dữ liệu trong bảng
-			$this->db->where('matl', $maTheLoai);
-			$query=$this->db->get("theloai");// lấy trong bảng sách
+			$this->db->where('makhachhang', $maTheLoai);
+			$query=$this->db->get("khachhang");// lấy trong bảng sách
 			return $result = $query->result_array();// lấy danh sách
 
 		}

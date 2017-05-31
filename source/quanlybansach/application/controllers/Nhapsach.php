@@ -8,6 +8,7 @@ class Nhapsach extends CI_Controller
 	{
 			# code...
 		parent::__construct();
+		$this->load->model('Baocaoton_model');
 		$this->load->model('Nhapsach_model');
 		$this->load->model('Sach_model');
 		$this->load->model('Nhacungcap_model');
@@ -51,6 +52,7 @@ class Nhapsach extends CI_Controller
 			/*sep2: tao chi tiet phieu nhap */
 			$chitietphieunhap = array();
 			$sachupdate = array();
+			$baocaoton = array();
 	   for($i = 0; $i < $length; $i++) {
 			$chitietphieunhap[$i]['maphieunhap'] = $maphieu;
 			$chitietphieunhap[$i]['masach'] = $id[$i];
@@ -59,12 +61,19 @@ class Nhapsach extends CI_Controller
 			$soluongton = $this->Sach_model->getSachByID($id[$i]);
 			$sachupdate[$i]['masach'] = $id[$i];
 			$sachupdate[$i]['soluongton'] = $soluongton[0]['soluongton'] + $soluong[$i];
+			/*bao cao ton*/
+			$baocaoton[$i]['masach'] = $id[$i];
+			$baocaoton[$i]['tondau'] = $soluongton[0]['soluongton'];
+			$baocaoton[$i]['phatsinh'] ="nhập  sách về ";
+			$baocaoton[$i]['toncuoi'] = $soluongton[0]['soluongton'] + $soluong[$i];
 		};
-
 			$machitiet=$this->Nhapsach_model->insertChiTietphieunhap($chitietphieunhap);
 			$update = $this->Sach_model->updateSoLuongton($sachupdate);
+			$mabaocao = $this->Baocaoton_model->insertBaoCaoTon($baocaoton);
 			/*cap nhau so luong ton cua san pham */
-			if($machitiet && $update !=0 )
+			/*tao bao cao cong no */
+
+			if($machitiet && $update && $mabaocao !=0 )
 			{
 			$data = array(
 				"status"=>"1",

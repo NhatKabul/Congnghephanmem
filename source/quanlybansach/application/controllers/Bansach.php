@@ -8,6 +8,9 @@ class Bansach extends CI_Controller
 	{
 			# code...
 		parent::__construct();
+		$this->load->model('Baocaoton_model');
+		$this->load->model('Baocaocongno_model');
+		$this->load->model('Khachhang_model');
 		$this->load->model('Nhapsach_model');
 		$this->load->model('Bansach_model');
 		$this->load->model('Sach_model');
@@ -33,6 +36,7 @@ class Bansach extends CI_Controller
 		$giaban = $this->input->post("dongia[]");
 		$thanhtien = $this->input->post("thanhtien[]");
 		$manhacungcap = $this->input->post("mancc");
+		$sotienno = $this->input->post("txttienno");
 		$manhanvien = $this->session->userdata('userdata')['id'];
 
 		$tongtien = 0;
@@ -47,6 +51,7 @@ class Bansach extends CI_Controller
 			'manhanvien' => $manhanvien
 			
 			);
+
 		$maphieu= $this->Bansach_model->insertphieunhap($phieunhap);
 		$soluongton = $this->Sach_model->getSachByID($id[0]);
 		if($maphieu != 0)
@@ -54,7 +59,15 @@ class Bansach extends CI_Controller
 			/*sep2: tao chi tiet phieu nhap */
 			$chitietphieunhap = array();
 			$sachupdate = array();
-	   for($i = 0; $i < $length; $i++) {
+			$baocaoton = array();
+			$nodau = $this->Khachhang_model->getKhachhangByID($manhacungcap);
+			$baocaocongno = array(
+			'makhachhang' => $manhacungcap,
+			'nodau'=> $nodau[0]['tienno'] ,
+			'phatsinh' => 'khách hàng nợ lại tiền',
+			'nocuoi' => $nodau[0]['tienno'] + $sotienno,
+			);
+	   		for($i = 0; $i < $length; $i++) {
 			$chitietphieunhap[$i]['mahd'] = $maphieu;
 			$chitietphieunhap[$i]['masach'] = $id[$i];
 			$chitietphieunhap[$i]['soluong'] = $soluong[$i];
@@ -62,12 +75,21 @@ class Bansach extends CI_Controller
 			$soluongton = $this->Sach_model->getSachByID($id[$i]);
 			$sachupdate[$i]['masach'] = $id[$i];
 			$sachupdate[$i]['soluongton'] = $soluongton[0]['soluongton'] - $soluong[$i];
+			/*bao cao ton */
+			$baocaoton[$i]['masach'] = $id[$i];
+			$baocaoton[$i]['tondau'] = $soluongton[0]['soluongton'];
+			$baocaoton[$i]['phatsinh'] ="bán sách cho khách hàng ";
+			$baocaoton[$i]['toncuoi'] = $soluongton[0]['soluongton'] - $soluong[$i];
+			
+
 		};
 
 			$machitiet=$this->Bansach_model->insertChiTietphieunhap($chitietphieunhap);
 			$update = $this->Sach_model->updateSoLuongton($sachupdate);
+			$mabaocao = $this->Baocaoton_model->insertBaoCaoTon($baocaoton);
+			$macongno = $this->Baocaocongno_model->Insertcongno($baocaocongno);
 			/*cap nhau so luong ton cua san pham */
-			if($machitiet && $update !=0 )
+			if($machitiet && $update  !=0 )
 			{
 			$data = array(
 				"status"=>"1",

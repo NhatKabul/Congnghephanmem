@@ -5,10 +5,6 @@
     <div class="row">
       <div class="col-md-10 col-sm-10 col-xs-7">
         <label>
-         <?php 
-         echo $this->session->userdata('userdata')['logged_in'];
-
-         ?>   
        </label>
      </div>
      <div class="col-md-2 col-sm-2 col-xs-5">
@@ -90,10 +86,6 @@
            <?php  } ?>
          </select>
        </div>
-       <div class="col-sm-4"> 
-        <label class="control-label" for="exampleInputName2">tên sách</label>
-        <input class="form-control" id="txtTenSach" placeholder="Tên Sách" type="text" readonly=""> 
-      </div>
       <div class="col-sm-3">
        <label class="control-label" for="exampleInputName2">số lượng tồn hiện tại</label>
        <input class="form-control" id="txtluongton" placeholder="Số lượng" type="text" readonly=""> <label class="control-label" for="exampleInputName2" ></label>
@@ -113,7 +105,7 @@
       <p>bạn nhân nhập đúng với cấu hình hệ thống </p>
       <p class="message"></p>
     </div>
-    <div class="col-sm-3"> <label>chọn số lượng nhập</label><input class="form-control" id="txtsoluonnhap" placeholder="số lượng nhập" type="text">
+    <div class="col-sm-3"> <label>chọn số lượng nhập</label><input class="form-control" id="txtsoluonnhap" placeholder="số lượng nhập" type="number">
     </div>
     <div style="margin-top: 25px;" class="col-sm-3">
       <button type="button" id="btnthemchitiet" class="btn btn-success">Thêm Chi tiết phiếu nhập</button>
@@ -147,6 +139,14 @@
         </tbody>
       </table>
     </div>
+     <div class="form-group">
+      <div class="col-sm-8 text-right">
+        <label>Nợ Lại</label>
+      </div>
+      <div class="col-sm-3">
+        <input class="form-control" id="txttienno" name="txttienno" placeholder="0" type="number">
+      </div>
+    </div>
     <div class="form-group">
       <div class="col-sm-8 text-right">
         <label>Tổng tiền:</label>
@@ -161,15 +161,18 @@
 
     <div class="col-xs-6 col-md-6 text-left">
       <br><label><button id="btnLapPhieuNhap" type="submit" class="btn btn-primary">Lập phiếu nhập</button></label>
-      </div>
-      <div class="col-md-12">
-        <div class="col-md-6 col-md-6 text-left">
-      <br><label><button id="btninphieu"  type="button" value="" class="btn btn-primary hidden">In Đơn hàng</button></label>
+    </div>
+    <div class="col-md-12">
+
+      <div class="col-md-6 col-md-6 text-left">
+        <br><label><button id="btninphieu"  type="button" value="" class="btn btn-primary hidden">In Đơn hàng</button></label>
       </div>  
-      </div>
     </div>
-    </div>
+ 
+
   </div>
+</div>
+</div>
 
 </form>
 </div>
@@ -241,7 +244,6 @@
 </div>
 <script type="text/javascript">
   $('#txtMaSach').on('change', function() {
-    alert( this.value );
     $.ajax({
       type: "POST",
       dataType: 'json',
@@ -277,13 +279,11 @@
   /*lap phieu nhap */
   $('#btnLapPhieuNhap').click(function(e){
     e.preventDefault();
-     var dataform = $("#frm-danh-sach-hang-hoa").serialize();
+    var dataform = $("#frm-danh-sach-hang-hoa").serialize();
    // console.log(dataform);
   //  var dataSelect: $('#selSachBan').val();
     // console.log(dataSelect);
     var mancc = $('#txtMaNCC').val();
-    console.log(mancc);
-    console.log(dataform);
     $.ajax({
       type: "POST",
       dataType: 'json',
@@ -292,9 +292,10 @@
       success: function(resp){
         if(resp.status== 1)
         {
+          console.log(resp);
           $('.message').text(resp.message)
           alert('thêm đơn hàng thành công');
-          $('#btninphieu').val(resp.maphieu);
+          $('#btninphieu').val(resp.mahd);
           $('#btninphieu').removeClass('hidden');
 
         }
@@ -302,13 +303,13 @@
         //setTimeout(window.location.reload());
       },
    error: function(resp) { //alert(JSON.stringify(resp));
-    alert(resp.message);}
+    alert(resp.message);
+  }
   });
     return false;    
 
   });
   $('#btninphieu').click(function(){
-    alert(this.value);
     window.location.href = "<?php echo base_url('bansach/inphieunhap/"+this.value+"') ?>";
   });
 </script>

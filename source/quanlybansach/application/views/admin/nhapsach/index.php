@@ -5,10 +5,7 @@
     <div class="row">
       <div class="col-md-10 col-sm-10 col-xs-7">
         <label>
-         <?php 
-         echo $this->session->userdata('userdata')['logged_in'];
-
-         ?>   
+ 
        </label>
      </div>
      <div class="col-md-2 col-sm-2 col-xs-5">
@@ -241,7 +238,6 @@
 </div>
 <script type="text/javascript">
   $('#txtMaSach').on('change', function() {
-    alert( this.value );
     $.ajax({
       type: "POST",
       dataType: 'json',

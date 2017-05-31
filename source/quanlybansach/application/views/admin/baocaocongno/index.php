@@ -57,9 +57,11 @@
                 </div>
               </th>
               <th>STT</th>
-              <th>Mã tham số</th>
-              <th>Tên Tham số</th>
-              <th>Giá trị</th>
+              <th>mã khách hàng</th>
+              <th>ngày phát sinh</th>
+              <th>lý do</th>
+              <th>nợ đầu</th>
+              <th>nợ cuối</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -68,7 +70,7 @@
             $stt =0;
             foreach ($data_info as $key => $value) {
               $stt++;
-              $masach = $value['mathamso'];
+              $masach = $value['id'];
               ?>
               <tr>
               <td class="text-center">
@@ -79,17 +81,12 @@
                   <?php echo $stt; ?>
                 
               </td>
-              <td> <?php echo $value['mathamso']; ?></td>
-                <td> <?php echo $value['tenthamso']; ?></td>
-              <td><?php echo $value['giatri']; ?></td>
-              <td><?php
-               if($value['status']==1){ 
-                echo '<span class="label label-success">áp dụng</span>';
-                }
-                 else echo '<span class="label label-warning">không áp dụng</span>';
-                  ?>
-                   
-                 </td>
+              <td> <?php echo $value['makhachhang']; ?></td>
+              <td><?php echo $value['ngayphatsinh']; ?></td>
+              <td><?php echo $value['phatsinh']; ?></td>
+              <td><?php echo $value['nodau']; ?></td>
+              <td><?php echo $value['nocuoi']; ?></td>
+              
               <td><a class='xoasach' href='' data-id='<?php echo $masach ;?>' ><i class="glyphicon glyphicon-trash" style="color: red"></i></a><span style="padding: 10px">|</span><a class='chitietsach' href='' data-id='<?php echo $masach ;?>' data-toggle='modal' data-target='#myModal'><i class="glyphicon glyphicon-edit" style="color: green"></i></a></td>
             </tr>
             <?php }?>

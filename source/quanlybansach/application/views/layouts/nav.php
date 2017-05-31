@@ -8,8 +8,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="active"><a href="pages/banhang/banhang2.html"><i class="fa fa-circle-o"></i> Bán lẻ</a></li>
-            <li><a href="pages/banhang/banhang2.html"><i class="fa fa-circle-o"></i> Bán sỉ</a></li>
+            <li class="active"><a href="<?php echo  base_url('bansach'); ?>"><i class="fa fa-circle-o"></i>Bán  Sách</a></li>
+          
           </ul>
         </li>
         <li class="treeview">
@@ -55,10 +55,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="thongke/month"><i class="fa fa-circle-o"></i> Thống kê tháng</a></li>
-            <li><a href="thongke/year"><i class="fa fa-circle-o"></i> Thống kê năm</a></li>
-            <li><a href="thongke"><i class="fa fa-circle-o"></i> Báo cáo tháng</a></li>
-            <li><a href="thongke"><i class="fa fa-circle-o"></i> Báo cáo năm</a></li>
+            <li><a href="<?php echo  base_url('baocaoton'); ?>"><i class="fa fa-circle-o"></i>báo cáo số lượng tồn</a></li>
+            <li><a href="<?php echo  base_url('baocaocongno'); ?>"><i class="fa fa-circle-o"></i> Báo cáo Công nợ</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -70,10 +68,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo  base_url('caidat'); ?>"><i class="fa fa-circle-o"></i> Quy định nhập</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Quy định dư nợ khách hàng</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Quy định chiết khấu</a></li>
-            
+            <li><a href="<?php echo  base_url('caidat'); ?>"><i class="fa fa-circle-o"></i> Cấu hình hệ thống</a></li>
+          
          
 
           </ul>

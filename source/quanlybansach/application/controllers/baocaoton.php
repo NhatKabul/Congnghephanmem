@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Khachhang extends CI_Controller 
+class Baocaoton extends CI_Controller 
 {
 
 	function __construct()
@@ -9,6 +9,7 @@ class Khachhang extends CI_Controller
 			# code...
 		parent::__construct();
 		$this->load->model('Sach_model');
+		$this->load->model('Baocaoton_model');
 		$this->load->library('pagination');
 
 	}
@@ -43,15 +44,12 @@ class Khachhang extends CI_Controller
 		
 		$this->pagination->initialize($config);
 		$page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-		$data['subview'] ='admin/book/index';
-		$data['title'] = 'Quản lý sách';
+		$data['subview'] ='admin/Baocaoton/index';
+		$data['title'] = 'Báo cáo tồn	';
 
 	
-		$data['data_info'] = $this->Sach_model->get_DanhsachPhanTrang($config['per_page'], $page);
+		$data['data_info'] = $this->Baocaoton_model->get_DanhsachPhanTrang($config['per_page'], $page);
 		$data["links"] = $this->pagination->create_links();
-	 	//$data['data_info'] = $this->Sach_model->get_AllSach();
-		
-		//$data['data_info_status_0']=$this->Sach_model->get_Sach_By_Status(0);
 		$this->load->view('admin/layout', $data);
 
 

@@ -1,63 +1,104 @@
-<?php  
- if (!defined('BASEPATH')) exit('No direct script access allowed');
- class Caidat_model extends CI_MODEL {
- 	public  $table = 'thamso';
-  public $slnhaptothieukhinhap = 150;
-  public $sltontoidakhinhap = 300;
-  public $sotiennotoida = 20000;
-  public $sltontoithieukhiban = 20;
- 	function __construct() {
- 		parent::__construct();
- 		$this->load->database();
- 	}
-
-  public function get_slnhaptothieukhinhap()
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+class Caidat_model extends CI_Model
+{
+  public $table ='sach';
+  function __construct()
   {
-    $slnhaptothieukhinhap = $this->db->select('giatri')
-                  ->get_where('thamso', array('mathamso' => 'slnhaptothieukhinhap'))
-                  ->row()
-                  ->giatri;
-      return $slnhaptothieukhinhap;
+      # code...
+    parent::__construct();
+    $this->load->database();
+    
   }
+
   public function get_AllCauHinh()
   {
-    $this->db->select("*");//lấy tất cả trường dữ liệu trong bảng
+    
+      $this->db->select("*");//lấy tất cả trường dữ liệu trong bảng
          $this->db->from('thamso');// lấy trong bảng sách
          $query = $this->db->get();
       return $result = $query->result_array();// lấy danh sách
+
+    }
+
+    public function getSachByID($maSach)
+    {
+      $this->db->select("*");//lấy tất cả trường dữ liệu trong bảng
+      $this->db->where('masach', $maSach);
+      $query=$this->db->get("sach");// lấy trong bảng sách
+      return $result = $query->result_array();// lấy danh sách
+
+    }
+    /* get sach voi dieu kien*/
+    public function getSachByMaNCC($mancc)
+    {
+      $this->db->select("*");//lấy tất cả trường dữ liệu trong bảng
+      $this->db->where('mancc', $mancc);
+      $query=$this->db->get("sach");// lấy trong bảng sách
+      return $result = $query->result_array();// lấy danh sách
+
+    }
+    public function get_Sach_By_Status($status)
+    {
+      $this->db->select("*");//lấy tất cả trường dữ liệu trong bảng
+      $this->db->where('status', $status);
+      $query=$this->db->get("sach");// lấy trong bảng sách
+      return $result = $query->result_array();// lấy danh sách
+
+    }
+
+    
+
+    public function updateSach($maSach, $data)
+    {
+      $this->db->where('masach', $maSach);
+      $this->db->update('sach', $data);
+      $afftectedRows=$this->db->affected_rows();
+      if($afftectedRows >0)
+        return 1;
+      return 0;
+    }
+    public function updateSoLuongton($data)
+    {
+      $this->db->update_batch('sach', $data, 'masach'); 
+      $afftectedRows=$this->db->affected_rows();
+      if($afftectedRows >0)
+        return 1;
+      return 0;
+    }
+    /* get danh sach sach theo kieu phan trang */
+    public function get_DanhsachPhanTrang($limit, $start)
+    {
+      $this->db->select("*");//lấy tất cả trường dữ liệu trong bảng
+      $this->db->limit($limit, $start);
+      $this->db->from('thamso');// lấy trong bảng sách
+      $query = $this->db->get();
+      return $query->result_array();
+    }
+    public function record_count()
+    {
+      return $this->db->count_all("thamso");
+    }
+
+
+    public function deleteSach($maSach)
+    {
+      $this->db->where('masach',$maSach);
+      $this->db->delete('sach');
+      $afftectedRows=$this->db->affected_rows();
+      if($afftectedRows >0)
+        return 1;
+      return 0;
+    }
+    public function deleteNhieuSach($maSach)
+    {
+      $this->db->where_in('masach',$maSach);
+      $this->db->delete('sach');
+      $afftectedRows=$this->db->affected_rows();
+      if($afftectedRows >0)
+        return 1;
+      return 0;
+    }
+
   }
-  public function get_sltontoidakhinhap()
-  {
-    $sltontoidakhinhap = $this->db->select('giatri')
-                  ->get_where('thamso', array('mathamso' => 'sltontoidakhinhap'))
-                  ->row()
-                  ->giatri;
-    return $sltontoidakhinhap;
- }
-  public function get_sotiennotoida()
-  {
-    $sotiennotoida = $this->db->select('giatri')
-                  ->get_where('thamso', array('mathamso' => 'sotiennotoida'))
-                  ->row()
-                  ->giatri;
-    return $sotiennotoida;
- }
-   public function get_sltontoithieukhiban()
-  {
-    $sltontoithieukhiban = $this->db->select('giatri')
-                  ->get_where('thamso', array('mathamso' => 'sltontoithieukhiban'))
-                  ->row()
-                  ->giatri;
-    return $sltontoithieukhiban;
- }
- /** update tham so **/
- public function update_thamso($mathamso, $data) 
- {
-  $this->db->where('mathamso', $maso);
-  $this->db->update('thamso', $data);
-  if ($this->db->affected_rows() > 0)
-  return TRUE;
-  else
-  return FALSE;
- }
-}
+  ?>  

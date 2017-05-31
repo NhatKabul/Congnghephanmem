@@ -38,7 +38,7 @@
         <span class="glyphicon glyphicon-trash"></span> XÓA
       </button>
       <button type="button" class="btn btn-info" id="btnThemSach">
-        <span class="glyphicon glyphicon-save-file"></span> <a href="<?php echo base_url('nhanvien/export'); ?>"> EXPORT EXCEL
+        <span class="glyphicon glyphicon-save-file"></span> <a href="<?php echo base_url('nhanvien/export'); ?>"> EXPORT EXCEL</a>
       </button>
       </div>
     </div>

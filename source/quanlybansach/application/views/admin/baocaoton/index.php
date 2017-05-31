@@ -57,9 +57,11 @@
                 </div>
               </th>
               <th>STT</th>
-              <th>Mã tham số</th>
-              <th>Tên Tham số</th>
-              <th>Giá trị</th>
+              <th>Mã Sách</th>
+              <th>ngày phát sinh</th>
+              <th>lý do</th>
+              <th>tồn đầu</th>
+              <th>tồn cuối</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -68,7 +70,7 @@
             $stt =0;
             foreach ($data_info as $key => $value) {
               $stt++;
-              $masach = $value['mathamso'];
+              $masach = $value['id'];
               ?>
               <tr>
               <td class="text-center">
@@ -79,14 +81,16 @@
                   <?php echo $stt; ?>
                 
               </td>
-              <td> <?php echo $value['mathamso']; ?></td>
-                <td> <?php echo $value['tenthamso']; ?></td>
-              <td><?php echo $value['giatri']; ?></td>
+              <td> <?php echo $value['masach']; ?></td>
+              <td><?php echo $value['ngayphatsinh']; ?></td>
+              <td><?php echo $value['phatsinh']; ?></td>
+              <td><?php echo $value['tondau']; ?></td>
+              <td><?php echo $value['toncuoi']; ?></td>
               <td><?php
                if($value['status']==1){ 
-                echo '<span class="label label-success">áp dụng</span>';
+                echo '<span class="label label-success">còn bán</span>';
                 }
-                 else echo '<span class="label label-warning">không áp dụng</span>';
+                 else echo '<span class="label label-warning">hết bán</span>';
                   ?>
                    
                  </td>
