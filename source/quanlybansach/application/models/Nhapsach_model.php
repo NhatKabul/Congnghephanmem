@@ -71,18 +71,25 @@ class Nhapsach_model extends CI_Model
 				return 1;
 			return 0;
 		}
-
-
-
-		// public function insert($maSach, $data)
-		// {
-		// 	$this->db->where('masach', $maSach);
-		// 	$this->db->update('sach', $data);
-		// 	$afftectedRows=$this->db->affected_rows();
-		// 	if($afftectedRows >0)
-		// 		return 1;
-		// 	return 0;
-		// }
+		public function insertphieunhap($data)
+		{
+			$this->db->insert('phieunhap', $data);
+			$afftectedRows=$this->db->affected_rows();
+			 $insert_id = $this->db->insert_id();
+			if($afftectedRows >0)
+				return $insert_id;
+			return 0;
+		}
+		public function insertChiTietphieunhap($data)
+		{
+			$this->db->insert_batch('chitietphieunhap', $data);
+			$afftectedRows=$this->db->affected_rows();
+			if($afftectedRows >0)
+				return 1;
+			return 0;
+		}
+		
+	
 
 	}
 	?>	
