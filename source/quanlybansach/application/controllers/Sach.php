@@ -43,11 +43,14 @@ class Sach extends CI_Controller
 		
 		$this->pagination->initialize($config);
 		$page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+		$data['subview'] ='admin/book/index';
+		$data['title'] = 'Quản lý sách';
+
+	
 		$data['data_info'] = $this->Sach_model->get_DanhsachPhanTrang($config['per_page'], $page);
 		$data["links"] = $this->pagination->create_links();
 	 	//$data['data_info'] = $this->Sach_model->get_AllSach();
-		$data['subview'] ='admin/book/index';
-		$data['title'] = 'Quản lý sách';
+		
 		//$data['data_info_status_0']=$this->Sach_model->get_Sach_By_Status(0);
 		$this->load->view('admin/layout', $data);
 
@@ -64,6 +67,17 @@ class Sach extends CI_Controller
 
 	}
 
+	public function timkiem()
+	{
+		$query = $this->input->get('query');
+		print_r($query);
+		if($this->input->get('search') != null)
+		{
+			echo 'hihi';
+			die;
+
+		}
+	}
 	public function chitietbynhacc()
 	{
 		header('Content-Type: application/json');
@@ -118,6 +132,30 @@ class Sach extends CI_Controller
 				);
 			echo json_encode($data);
 		}
+	}
+	public function xoanhieusach()
+	{
+		header('Content-Type: application/json');
+		$maSach = $this->input->post('id');
+
+		$effect=$this->Sach_model->deleteNhieuSach($maSach);
+		//echo $effect; 
+		if($effect==1)
+		{
+			$data = array(
+				"status"=>"1",
+				"message"=>"Thành công"
+				);
+			echo json_encode($data);
+		}
+	}
+	public function exportExcel()
+	{
+			require_once (APPPATH.'/third_party/PHPExcel.php');
+			require_once APPPATH . "/third_party/PHPExcel/IOFactory.php";
+			$this->load->library('excel');
+
+
 	}
 
 

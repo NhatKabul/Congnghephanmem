@@ -95,8 +95,8 @@ class Nhanvien_model extends CI_Model
 				$row = $query->row();
 				$userdata = array(
 					'email'=>  $row->email,
-					'id' =>   $row->id,
-					'username' => $row->username,
+					'id' =>   $row->manhanvien,
+					'username' => $row->tennhanvien,
 					'logged_in' =>  TRUE 
 					);
 				$this->session->set_userdata('userdata',$userdata); 

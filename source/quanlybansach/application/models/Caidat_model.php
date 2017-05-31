@@ -19,6 +19,13 @@
                   ->giatri;
       return $slnhaptothieukhinhap;
   }
+  public function get_AllCauHinh()
+  {
+    $this->db->select("*");//lấy tất cả trường dữ liệu trong bảng
+         $this->db->from('thamso');// lấy trong bảng sách
+         $query = $this->db->get();
+      return $result = $query->result_array();// lấy danh sách
+  }
   public function get_sltontoidakhinhap()
   {
     $sltontoidakhinhap = $this->db->select('giatri')

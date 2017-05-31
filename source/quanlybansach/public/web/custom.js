@@ -1,7 +1,5 @@
 $(document ).ready(function() {
-        $('.btnfilter').click(function() {
-        alert('hello');
-       alert('ahihi');
+        $('.btnfilter').click(function(e) {
         e.preventDefault();
         var param = $(this).attr("href").replace("#","");
         var concept = $(this).text();
@@ -13,9 +11,7 @@ $(document ).ready(function() {
   $('#chkCheckAll').click(function () {    
      $('input:checkbox').prop('checked', this.checked);    
  });
-  $('#btnxoasach').click(function(){
-    alert('hihi');
-  });
+ 
 });
 /*
     $(".chitietsach").click(function(){

@@ -4,32 +4,30 @@
   <div class="panel-heading">
     <div class="row">
     <div class="col-md-12">
-        <div class="alert alert-success alert-dismissable fade in">
+        <div class="alert alert-success alert-dismissable fade in hidden">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
     <strong>Success!</strong> This alert box could indicate a successful or positive action.
   </div>
     </div>
      <div class="col-md-8 col-sm-6 col-xs-7">
+     <form action="sach/timkiem" method="get">
          <div class="input-group">
                 <div class="input-group-btn search-panel">
-                    <button type="button"  class="btn btn-default dropdown-toggle btnfilter" data-toggle="dropdown">
-                      <span id="search_concept">Filter by</span> <span class="caret"></span>
+                    <button type="button"  class="btn btn-default dropdown-toggle btnfilter" data-toggle="dropdown">Tìm kiếm theo</span> <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
-                      <li><a href="#contains">Contains</a></li>
-                      <li><a href="#its_equal">It's equal</a></li>
-                      <li><a href="#greather_than">Greather than ></a></li>
-                      <li><a href="#less_than">Less than < </a></li>
-                      <li class="divider"></li>
-                      <li><a href="#all">Anything</a></li>
+                      <li><a href="#ma">Mã </a></li>
+                      <li><a href="#ten">Tên</a></li>
+                      
                     </ul>
                 </div>
                 <input type="hidden" name="search_param" value="all" id="search_param">         
-                <input type="text" class="form-control" name="x" placeholder="Search term...">
+                <input type="text" class="form-control" name="query" placeholder="Tìm kiếm theo...">
                 <span class="input-group-btn">
-                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                    <button class="btn btn-default" name="search" type="submit"><span class="glyphicon glyphicon-search"></span></button>
                 </span>
             </div>
+           </form>
      </div>
      <div class="col-md-4 col-sm-6 col-xs-5">
      <div class="btn-group">
@@ -39,8 +37,8 @@
       <button type="button" class="btn btn-danger" id="btnxoasach">
         <span class="glyphicon glyphicon-trash"></span> XÓA
       </button>
-      <button type="button" class="btn btn-info" id="btnThemSach"  data-toggle="modal" data-target="#modalThemSach">
-        <span class="glyphicon glyphicon-save-file"></span> EXPORT EXCEL
+      <button type="button" class="btn btn-info" id="btnThemSach">
+        <span class="glyphicon glyphicon-save-file"></span> <a href="<?php echo base_url('nhanvien/export'); ?>"> EXPORT EXCEL
       </button>
       </div>
     </div>
@@ -77,7 +75,7 @@
               ?>
               <tr>
               <td class="text-center">
-               <input class="checkitem" type="checkbox" name="checkitem[]" value=""/>
+               <input class="checkitem" type="checkbox" name="checkitem[]" value="<?php echo $masach; ?>">
               </td>
                <td>
                  
@@ -127,7 +125,6 @@
         <div class="row"> 
           <div class="col-md-offset-1 col-md-12"> 
             <form action="#" method="post" class="form-horizontal" id="frmSach" enctype="multipart/form-data"> 
-             <!-- <div class="header"><label>Thông tin sách:</label></div> -->
              <div class="form-content"> 
 
               <div class="form-group">
@@ -137,8 +134,6 @@
                   <div class="col-sm-6"><label>Mã sách:</label> <input class="form-control" name="txtMaSach" id="txtMaSach" placeholder="Mã Sách" type="text" value=""  readonly>  
                   </div> 
 
-                  <!--<div class="col-sm-6"> <label>Ngày nhập:</label><input class="form-control" id="txtNgayNhap" placeholder="Tên sách" type="text" value="" >
-                </div> -->
                 <div class="col-sm-6"> <label>Ngày nhập:</label>
                   <div class="input-group date">
                     <div class="input-group-addon">
@@ -180,10 +175,6 @@
 
           </div> 
 
-                 <!-- <div class="footer clearfix"> 
-                    <button type="button" class="btn btn-default">Xác nhận</button> 
-                  </div> -->
-
                 </div> 
               </div> 
 
@@ -204,15 +195,6 @@
      </div>
    </form> 
    <div class="row"></div>
-
-   <?php
-   // $str = "tâm-lan-huyền";
-   // $cc=(explode("-",$str));
-   // echo $cc[0];
-//giới hạn chỉ 2 phần tử
- //  print_r(explode("-",$str,2));
-   ?>
-   <!-- MODAL THÊM SÁCH -->
 
    <div class="clear-fix"></div>
    <div class="modal fade col-md-12" id="modalThemSach" role="dialog">
@@ -310,8 +292,6 @@
         id:$(this).data('id')
       },
       success: function(resp){
-         // alert("vv");
-        // console.log(resp);
         $('#txtMaSach').val(resp.data_info[0].masach);
         $('#txtTenSach').val(resp.data_info[0].tensach);
         $('#txtNgayNhap').val(resp.data_info[0].ngaynhap);
@@ -340,8 +320,6 @@
       data : dataform,
       success: function(resp){
         console.log(resp.message);
-       //alert(resp.status);
-     //  alert("ccc");
      $("#message").text(resp.message);
 
      setTimeout(window.location.reload(), 2000);
@@ -355,9 +333,6 @@
 
   $(".xoasach").click(function()
   {
-     // alert($(this).data('id'));
-     // console.log($(this).data('id'));
-      //console.log($(this).data('id'));
       $.ajax({
         type: "POST",
         dataType: 'json',
@@ -403,27 +378,6 @@
 
 
   });
-
-
-
-     //  $.ajax({
-     //    type: "POST",
-     //    dataType: 'json',
-     //    url:"<?php //echo site_url('sach/themsach') ;?>",
-     //    // data : {
-     //    //   id:$(this).data('id')
-     //    // },
-     //    success: function(resp){
-     //      alert("Xóa sách thành công");
-     //      //alert(resp.message);
-     //     // console.log(resp.message);
-     //     setTimeout(window.location.reload());
-     //   },
-     //   error: function(resp) { alert(JSON.stringify(resp)); }
-     // });
-    // return false;
-
-
 
 //REVIEW IMG
 function readURL(input) {
@@ -488,5 +442,31 @@ $(function()
 
   
 });
-
+/* xoa nhieu sach */
+ $('#btnxoasach').click(function(){
+    var arr = [];
+    $('input.checkitem:checkbox:checked').each(function () {
+    arr.push($(this).val());  
+    
+  });
+    var qa = confirm("bán muốn xóa không ??");
+    if(qa== true)
+    {
+      $.ajax({
+        type: "POST",
+        dataType: 'json',
+        url:"<?php echo site_url('sach/xoanhieusach') ;?>",
+        data : {
+          id:arr
+        },
+        success: function(resp){
+          alert("Xóa sách thành công");
+          //alert(resp.message);
+         // console.log(resp.message);
+         setTimeout(window.location.reload());
+       },
+       error: function(resp) { alert(JSON.stringify(resp)); }
+     });
+    }
+});
 </script>
